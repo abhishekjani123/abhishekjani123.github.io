@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #4CAF50;
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1rem 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #4CAF50;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .about, .projects, .skills, .experience, .contact {
+      margin: 2rem 0;
+    }
+
+    .projects ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .projects li {
+      margin: 1rem 0;
+      padding: 1rem;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .skills ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skills li {
+      background: #4CAF50;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #333;
+      color: white;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .resume-download {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .resume-download a {
+      text-decoration: none;
+      background: #4CAF50;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Abhishek Vasantkumar Jani</h1>
+    <p>SDE | ML/AI Enthusiast | Problem Solver</p>
+  </header>
+
+  <nav>
+    <a href="#about">About Me</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>Computer Science graduate student at Rutgers University with a solid foundation in AI and cybersecurity. Skilled in technical support, research, and advanced technology applications to develop efficient solutions for complex challenges.</p>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li>
+        <h3>Scribbler: Touchless Drawing Tool with Gesture Recognition</h3>
+        <p>Created a touchless drawing tool with real-time gesture recognition (90% accuracy) and color detection via OpenCV and MediaPipe. Integrated PowerPoint control for hands-free navigation during presentations.</p>
+        <a href="https://github.com/abhishekjani123/Scribbler--Air-Canvas-">View on GitHub</a>
+      </li>
+      <li>
+        <h3>Vital AI: Disease Prediction System</h3>
+        <p>Engineered a disease prediction system utilizing ML models (Logistic Regression, Decision Tree, KNN) with a 92.3% accuracy rate. Built a full-stack web application hosted using Ngrok.</p>
+        <a href="https://github.com/abhishekjani123/Vital-AI">View on GitHub</a>
+      </li>
+      <li>
+        <h3>Terrobyte: Digital Assistant for Vaccine Availability</h3>
+        <p>Developed a digital assistant for vaccine monitoring and health alerts using Python and SQLite. Tackled pandemic challenges during Hackon 2.0 Hackathon, improving accessibility by 40%.</p>
+        <a href="https://github.com/abhishekjani123/Terrobyte">View on GitHub</a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Python</li>
+      <li>Machine Learning</li>
+      <li>Deep Learning</li>
+      <li>JavaScript</li>
+      <li>React</li>
+      <li>Node.js</li>
+      <li>C++</li>
+      <li>Flask</li>
+      <li>SQL</li>
+    </ul>
+  </section>
+
+  <section id="experience" class="experience">
+    <h2>Experience</h2>
+    <h3>Sophos - Technical Support Engineer</h3>
+    <p>Resolved over 700 service requests, increasing client uptime by 20% and achieving 95% customer satisfaction. Provided support for Sophos Firewall and related modules, utilizing Salesforce for ticket management.</p>
+    
+    <h3>Ganpat University - Research Intern</h3>
+    <p>Improved model accuracy by 25% through data preprocessing and transfer learning. Built a real-time emotion tracking tool with reduced latency.</p>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Email: abhishekjani075@gmail.com</p>
+    <p>GitHub: <a href="https://github.com/abhishekjani123">github.com/abhishekjani123</a></p>
+    <p>LinkedIn: <a href="#">linkedin.com/in/abhishekjani</a></p>
+    <div class="resume-download">
+      <a href="Resume_Abhishek.pdf" download>Download Resume</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Abhishek Vasantkumar Jani. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
