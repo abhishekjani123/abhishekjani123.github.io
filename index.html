@@ -4,182 +4,115 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }
-
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
     body {
-      background: #f4f4f9;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      background: #4CAF50;
-      color: #fff;
-      padding: 1rem 0;
-      text-align: center;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 1rem 0;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      color: #4CAF50;
-    }
-
-    section {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 2rem;
-    }
-
-    .about, .projects, .skills, .experience, .contact {
-      margin: 2rem 0;
-    }
-
-    .projects ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .projects li {
-      margin: 1rem 0;
-      padding: 1rem;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .skills ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .skills li {
-      background: #4CAF50;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 3px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #333;
-      color: white;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-
-    .resume-download {
-      text-align: center;
-      margin-top: 1rem;
-    }
-
-    .resume-download a {
-      text-decoration: none;
-      background: #4CAF50;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      font-family: 'Roboto', sans-serif;
     }
   </style>
 </head>
-<body>
-  <header>
-    <h1>Abhishek Vasantkumar Jani</h1>
-    <p>SDE | ML/AI Enthusiast | Problem Solver</p>
+<body class="bg-gray-100">
+  <header class="bg-green-600 text-white text-center py-6">
+    <h1 class="text-4xl font-bold">Abhishek Vasantkumar Jani</h1>
+    <p class="text-lg mt-2">SDE | ML/AI Enthusiast | Problem Solver</p>
   </header>
 
-  <nav>
-    <a href="#about">About Me</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
+  <nav class="bg-white shadow-md py-4 sticky top-0 z-50">
+    <ul class="flex justify-center space-x-8 text-lg">
+      <li><a href="#about" class="hover:text-green-600 transition">About Me</a></li>
+      <li><a href="#projects" class="hover:text-green-600 transition">Projects</a></li>
+      <li><a href="#skills" class="hover:text-green-600 transition">Skills</a></li>
+      <li><a href="#experience" class="hover:text-green-600 transition">Experience</a></li>
+      <li><a href="#contact" class="hover:text-green-600 transition">Contact</a></li>
+    </ul>
   </nav>
 
-  <section id="about" class="about">
-    <h2>About Me</h2>
-    <p>Computer Science graduate student at Rutgers University with a solid foundation in AI and cybersecurity. Skilled in technical support, research, and advanced technology applications to develop efficient solutions for complex challenges.</p>
+  <section id="about" class="max-w-4xl mx-auto mt-10 px-6 py-8 bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-bold text-green-600">About Me</h2>
+    <p class="mt-4 text-gray-700">Computer Science graduate student at Rutgers University with a solid foundation in AI and cybersecurity. Skilled in technical support, research, and advanced technology applications to develop efficient solutions for complex challenges.</p>
   </section>
 
-  <section id="projects" class="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li>
-        <h3>Scribbler: Touchless Drawing Tool with Gesture Recognition</h3>
-        <p>Created a touchless drawing tool with real-time gesture recognition (90% accuracy) and color detection via OpenCV and MediaPipe. Integrated PowerPoint control for hands-free navigation during presentations.</p>
-        <a href="https://github.com/abhishekjani123/Scribbler--Air-Canvas-">View on GitHub</a>
-      </li>
-      <li>
-        <h3>Vital AI: Disease Prediction System</h3>
-        <p>Engineered a disease prediction system utilizing ML models (Logistic Regression, Decision Tree, KNN) with a 92.3% accuracy rate. Built a full-stack web application hosted using Ngrok.</p>
-        <a href="https://github.com/abhishekjani123/Vital-AI">View on GitHub</a>
-      </li>
-      <li>
-        <h3>Terrobyte: Digital Assistant for Vaccine Availability</h3>
-        <p>Developed a digital assistant for vaccine monitoring and health alerts using Python and SQLite. Tackled pandemic challenges during Hackon 2.0 Hackathon, improving accessibility by 40%.</p>
-        <a href="https://github.com/abhishekjani123/Terrobyte">View on GitHub</a>
-      </li>
-    </ul>
-  </section>
-
-  <section id="skills" class="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Python</li>
-      <li>Machine Learning</li>
-      <li>Deep Learning</li>
-      <li>JavaScript</li>
-      <li>React</li>
-      <li>Node.js</li>
-      <li>C++</li>
-      <li>Flask</li>
-      <li>SQL</li>
-    </ul>
-  </section>
-
-  <section id="experience" class="experience">
-    <h2>Experience</h2>
-    <h3>Sophos - Technical Support Engineer</h3>
-    <p>Resolved over 700 service requests, increasing client uptime by 20% and achieving 95% customer satisfaction. Provided support for Sophos Firewall and related modules, utilizing Salesforce for ticket management.</p>
-    
-    <h3>Ganpat University - Research Intern</h3>
-    <p>Improved model accuracy by 25% through data preprocessing and transfer learning. Built a real-time emotion tracking tool with reduced latency.</p>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p>Email: abhishekjani075@gmail.com</p>
-    <p>GitHub: <a href="https://github.com/abhishekjani123">github.com/abhishekjani123</a></p>
-    <p>LinkedIn: <a href="#">linkedin.com/in/abhishekjani</a></p>
-    <div class="resume-download">
-      <a href="Resume_Abhishek.pdf" download>Download Resume</a>
+  <section id="projects" class="max-w-4xl mx-auto mt-10 px-6 py-8 bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-bold text-green-600">Projects</h2>
+    <div class="space-y-6 mt-4">
+      <div class="border-b border-gray-300 pb-4">
+        <h3 class="text-xl font-bold">Scribbler: Touchless Drawing Tool with Gesture Recognition</h3>
+        <p class="text-gray-700">Created a touchless drawing tool with real-time gesture recognition (90% accuracy) and color detection via OpenCV and MediaPipe. Integrated PowerPoint control for hands-free navigation during presentations.</p>
+        <a href="https://github.com/abhishekjani123/Scribbler--Air-Canvas-" class="text-green-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="border-b border-gray-300 pb-4">
+        <h3 class="text-xl font-bold">Vital AI: Disease Prediction System</h3>
+        <p class="text-gray-700">Engineered a disease prediction system utilizing ML models (Logistic Regression, Decision Tree, KNN) with a 92.3% accuracy rate. Built a full-stack web application hosted using Ngrok.</p>
+        <a href="https://github.com/abhishekjani123/Vital-AI" class="text-green-600 hover:underline">View on GitHub</a>
+      </div>
+      <div class="border-b border-gray-300 pb-4">
+        <h3 class="text-xl font-bold">Terrobyte: Digital Assistant for Vaccine Availability</h3>
+        <p class="text-gray-700">Developed a digital assistant for vaccine monitoring and health alerts using Python and SQLite. Tackled pandemic challenges during Hackon 2.0 Hackathon, improving accessibility by 40%.</p>
+        <a href="https://github.com/abhishekjani123/Terrobyte" class="text-green-600 hover:underline">View on GitHub</a>
+      </div>
     </div>
   </section>
 
-  <footer>
+  <section id="skills" class="max-w-4xl mx-auto mt-10 px-6 py-8 bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-bold text-green-600">Skills</h2>
+    <ul class="flex flex-wrap gap-4 mt-4">
+      <li class="bg-green-100 text-green-800 px-4 py-2 rounded-full">Python</li>
+      <li class="bg-green-100 text-green-800 px-4 py-2 rounded-full">Machine Learning</li>
+      <li class="bg-green-100 text-green-800 px-4 py-2 rounded-full">Deep Learning</li>
+      <li class="bg-green-100 text-green-800 px-4 py-2 rounded-full">JavaScript</li>
+      <li class="bg-green-100 text-green-800 px-4 py-2 rounded-full">React</li>
+      <li class="bg-green-100 text-green-800 px-4 py-2 rounded-full">Node.js</li>
+      <li class="bg-green-100 text-green-800 px-4 py-2 rounded-full">C++</li>
+      <li class="bg-green-100 text-green-800 px-4 py-2 rounded-full">Flask</li>
+      <li class="bg-green-100 text-green-800 px-4 py-2 rounded-full">SQL</li>
+    </ul>
+  </section>
+
+  <section id="experience" class="max-w-4xl mx-auto mt-10 px-6 py-8 bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-bold text-green-600">Experience</h2>
+    <div class="space-y-6 mt-4">
+      <div>
+        <h3 class="text-xl font-bold">Sophos - Technical Support Engineer</h3>
+        <p class="text-gray-700">Resolved over 700 service requests, increasing client uptime by 20% and achieving 95% customer satisfaction. Provided support for Sophos Firewall and related modules, utilizing Salesforce for ticket management.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold">Ganpat University - Research Intern</h3>
+        <p class="text-gray-700">Improved model accuracy by 25% through data preprocessing and transfer learning. Built a real-time emotion tracking tool with reduced latency.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="max-w-4xl mx-auto mt-10 px-6 py-8 bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-bold text-green-600">Contact</h2>
+    <p class="mt-4 text-gray-700">Email: abhishekjani075@gmail.com</p>
+    <p class="mt-2 text-gray-700">GitHub: <a href="https://github.com/abhishekjani123" class="text-green-600 hover:underline">github.com/abhishekjani123</a></p>
+    <p class="mt-2 text-gray-700">LinkedIn: <a href="#" class="text-green-600 hover:underline">linkedin.com/in/abhishekjani</a></p>
+    <div class="text-center mt-6">
+      <a href="Resume_Abhishek.pdf" download class="bg-green-600 text-white px-6 py-3 rounded-full shadow hover:bg-green-700 transition">Download Resume</a>
+    </div>
+  </section>
+
+  <footer class="bg-green-600 text-white text-center py-4 mt-10">
     <p>&copy; 2025 Abhishek Vasantkumar Jani. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    // Add animations for scrolling elements
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fadeIn');
+        } else {
+          entry.target.classList.remove('animate-fadeIn');
+        }
+      });
+    });
+
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
