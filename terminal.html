@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abhishek Jani | Terminal Resume</title>
+  <meta name="description" content="Interactive terminal-style resume for Abhishek Jani" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="default">
+
+  <!-- Terminal Header Bar -->
+  <div class="terminal-topbar">
+    <div class="topbar-dots">
+      <span class="dot dot-red" id="btn-close"></span>
+      <span class="dot dot-yellow" id="btn-minimize"></span>
+      <span class="dot dot-green" id="btn-fullscreen"></span>
+    </div>
+    <div class="topbar-title">
+      <span class="topbar-icon"><i class="fa fa-terminal"></i></span>
+      abhishek@portfolio:~
+    </div>
+    <div class="topbar-actions">
+      <button class="topbar-btn" id="btn-split-h" title="Split Horizontal">
+        <i class="fa fa-columns"></i>
+      </button>
+      <button class="topbar-btn" id="btn-split-v" title="Split Vertical">
+        <i class="fa fa-rows"></i>
+      </button>
+      <a href="index.html" class="topbar-btn" title="Back to Portfolio">
+        <i class="fa fa-home"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Terminal Layout -->
+  <div class="terminal-layout" id="terminal-layout">
+    <!-- Primary Pane -->
+    <div class="terminal-pane" id="pane-primary">
+      <div class="terminal-output" id="output-primary"></div>
+      <div class="terminal-input-row">
+        <span class="prompt-label" id="prompt-primary">abhishek@portfolio:~$</span>
+        <input type="text" class="terminal-input" id="input-primary" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus />
+      </div>
+    </div>
+
+    <!-- Split Pane (hidden by default) -->
+    <div class="pane-divider" id="pane-divider" style="display:none"></div>
+    <div class="terminal-pane" id="pane-secondary" style="display:none">
+      <div class="terminal-output" id="output-secondary"></div>
+      <div class="terminal-input-row">
+        <span class="prompt-label" id="prompt-secondary">abhishek@portfolio:~$</span>
+        <input type="text" class="terminal-input" id="input-secondary" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+      </div>
+    </div>
+  </div>
+
+  <!-- p5.js for Snake -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.min.js"></script>
+
+  <!-- Terminal Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

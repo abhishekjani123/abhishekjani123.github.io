@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abhishek Jani | Software Engineer & ML/AI Enthusiast</title>
+  <meta name="description" content="Abhishek Jani — MS CS student at Rutgers, Software Engineer specializing in distributed systems, cloud, and ML/AI." />
+  <meta name="keywords" content="Abhishek Jani, Software Engineer, Machine Learning, AWS, Python, React, Rutgers" />
+  <meta name="author" content="Abhishek Jani" />
+
+  <!-- Favicon (AJ logo) -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+
+  <meta property="og:title" content="Abhishek Jani | Software Engineer" />
+  <meta property="og:description" content="MS CS student at Rutgers. Full-stack, cloud, ML/AI." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="neo-styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Abhishek Jani",
+    "email": "abhishekjani075@gmail.com",
+    "jobTitle": "Software Engineer",
+    "alumniOf": [
+      {"@type": "EducationalOrganization", "name": "Rutgers University"},
+      {"@type": "EducationalOrganization", "name": "Ganpat University"}
+    ],
+    "knowsAbout": ["Software Engineering", "Machine Learning", "Distributed Systems", "Cloud Computing", "Python", "React", "Node.js", "AWS"]
+  }
+  </script>
+</head>
+<body data-theme="light">
+
+  <!-- Loading Screen (outside page-wrapper for reliable mobile display) -->
+  <div class="loader-overlay">
+    <div class="loader-shapes">
+      <div class="loader-shape-svg loader-shape-1">
+        <svg width="80" height="80" viewBox="0 0 80 80"><rect x="10" y="10" width="60" height="60" fill="none" stroke="#111" stroke-width="4"/><rect x="20" y="20" width="40" height="40" fill="#111"/></svg>
+      </div>
+      <div class="loader-shape-svg loader-shape-2">
+        <svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="30" fill="none" stroke="#111" stroke-width="4"/><circle cx="35" cy="35" r="15" fill="#111"/></svg>
+      </div>
+      <div class="loader-shape-svg loader-shape-3">
+        <svg width="70" height="70" viewBox="0 0 70 70"><polygon points="35,5 65,60 5,60" fill="none" stroke="#111" stroke-width="4"/></svg>
+      </div>
+    </div>
+    <div class="loader-wrapper">
+      <div class="loader-letter">A</div>
+      <div class="loader-letter">J</div>
+    </div>
+    <div class="loader-progress-bar">
+      <div class="loader-progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="progress-bar-fill"></div>
+    <div class="progress-checkpoints">
+      <div class="checkpoint active" data-section="hero">
+        <div class="checkpoint-dot"></div>
+        <span class="checkpoint-label">Home</span>
+      </div>
+      <div class="checkpoint" data-section="about">
+        <div class="checkpoint-dot"></div>
+        <span class="checkpoint-label">About</span>
+      </div>
+      <div class="checkpoint" data-section="experience">
+        <div class="checkpoint-dot"></div>
+        <span class="checkpoint-label">Journey</span>
+      </div>
+      <div class="checkpoint" data-section="projects">
+        <div class="checkpoint-dot"></div>
+        <span class="checkpoint-label">Projects</span>
+      </div>
+      <div class="checkpoint" data-section="skills">
+        <div class="checkpoint-dot"></div>
+        <span class="checkpoint-label">Skills</span>
+      </div>
+      <div class="checkpoint" data-section="contact">
+        <div class="checkpoint-dot"></div>
+        <span class="checkpoint-label">Contact</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="#hero" class="nav-logo">AJ</a>
+      <div class="nav-links">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Journey</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+      </div>
+      <div class="nav-actions">
+        <a href="terminal.html" class="nav-badge" target="_blank">
+          <span>&#8594; Terminal Mode</span>
+        </a>
+        <a href="#contact" class="btn-nav-cta">Get in Touch!</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-links">
+      <a href="#hero" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#experience" class="nav-link">Journey</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+  </div>
+  <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="hero-section">
+    <div class="hero-content">
+
+      <!-- LEFT: Text -->
+      <div class="hero-text">
+        <p id="hero-greeting" class="hero-greeting">Hi there! 👋</p>
+        <h1 class="hero-name">I'm Abhishek Jani.</h1>
+        <p class="hero-bio">
+          Based in New Brunswick, NJ, I'm a Software Engineer &amp; MS CS student at Rutgers.
+          I love building distributed systems, ML pipelines, and cloud-native applications.
+          Passionate about applied AI and shipping reliable production code.
+        </p>
+        <div class="hero-social">
+          <a href="https://github.com/abhishekjani123" target="_blank" class="social-icon" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/abhishekjani075/" target="_blank" class="social-icon" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Get in Touch!</a>
+          <div class="hero-annotation">
+            <span class="annotation-text">let's build something ✨</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Photo with floating decorations -->
+      <div class="hero-photo-wrapper">
+        <!-- Floating deco: code bracket — top-left above photo -->
+        <div class="deco-code">
+          <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="88" height="88" rx="8" fill="#66d9ef" stroke="#000" stroke-width="4"/>
+            <rect x="3" y="3" width="88" height="88" rx="8" fill="#66d9ef" stroke="#000" stroke-width="4"/>
+            <path d="M35 40 L20 50 L35 60" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M65 40 L80 50 L65 60" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="55" y1="35" x2="45" y2="65" stroke="#000" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <!-- Floating deco: terminal — middle-right -->
+        <div class="deco-terminal">
+          <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="88" height="88" rx="8" fill="#ffd93d" stroke="#000" stroke-width="4"/>
+            <rect x="3" y="3" width="88" height="88" rx="8" fill="#ffd93d" stroke="#000" stroke-width="4"/>
+            <path d="M25 35 L40 50 L25 65" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="50" y1="65" x2="75" y2="65" stroke="#000" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <!-- Floating deco: floppy disk — bottom-left -->
+        <div class="deco-floppy">
+          <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="88" height="88" rx="8" fill="#a8e6cf" stroke="#000" stroke-width="4"/>
+            <rect x="3" y="3" width="88" height="88" rx="8" fill="#a8e6cf" stroke="#000" stroke-width="4"/>
+            <rect x="20" y="20" width="60" height="60" rx="3" fill="#ffd93d" stroke="#000" stroke-width="4"/>
+            <rect x="30" y="20" width="40" height="20" fill="#66d9ef" stroke="#000" stroke-width="3"/>
+            <rect x="35" y="55" width="30" height="15" rx="2" fill="#000"/>
+            <circle cx="50" cy="35" r="3" fill="#000"/>
+          </svg>
+        </div>
+        <!-- Photo card -->
+        <div class="hero-photo-card">
+          <div class="tape-sticker"></div>
+          <div class="hero-photo">
+            <img src="Profile Pic.jpeg" alt="Abhishek Jani" width="400" height="400" fetchpriority="high" />
+          </div>
+          <div class="hero-badge">ML / AI Engineer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech stack strip (like reference bottom row) -->
+    <div class="hero-stack-strip">
+      <div class="stack-tag"><i class="fab fa-node-js"></i> Node.js</div>
+      <div class="stack-tag"><i class="fab fa-react"></i> React</div>
+      <div class="stack-tag"><i class="fab fa-python"></i> Python</div>
+      <div class="stack-tag"><i class="fa fa-code"></i> JavaScript</div>
+      <div class="stack-tag"><i class="fa fa-brain"></i> PyTorch</div>
+      <div class="stack-tag"><i class="fab fa-aws"></i> AWS</div>
+      <div class="stack-tag"><i class="fab fa-docker"></i> Docker</div>
+    </div>
+  </section>
+
+  <!-- Paper Tear Top: hero tears away to reveal gray gap -->
+  <div class="paper-tear paper-tear-top">
+    <svg width="100%" height="30" viewBox="0 0 1440 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,15 Q90,6 180,15 T360,15 Q450,8 540,15 T720,15 Q810,6 900,15 T1080,15 Q1170,8 1260,15 T1440,15 L1440,0 Z" fill="#ffffff" stroke="none"/>
+      <path d="M0,30 L0,15 Q90,6 180,15 T360,15 Q450,8 540,15 T720,15 Q810,6 900,15 T1080,15 Q1170,8 1260,15 T1440,15 L1440,30 Z" fill="#d0d0d0" stroke="none"/>
+      <path d="M0,15 Q90,6 180,15 T360,15 Q450,8 540,15 T720,15 Q810,6 900,15 T1080,15 Q1170,8 1260,15 T1440,15" fill="none" stroke="var(--border)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- Page Gap (gray body showing through, closes on scroll) -->
+  <div class="page-gap"></div>
+
+  <!-- Paper Tear Bottom: gray gap merges into about section -->
+  <div class="paper-tear paper-tear-bottom">
+    <svg width="100%" height="30" viewBox="0 0 1440 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,15 Q90,6 180,15 T360,15 Q450,8 540,15 T720,15 Q810,6 900,15 T1080,15 Q1170,8 1260,15 T1440,15 L1440,0 Z" fill="#d0d0d0" stroke="none"/>
+      <path d="M0,30 L0,15 Q90,6 180,15 T360,15 Q450,8 540,15 T720,15 Q810,6 900,15 T1080,15 Q1170,8 1260,15 T1440,15 L1440,30 Z" fill="#ffffff" stroke="none"/>
+      <path d="M0,15 Q90,6 180,15 T360,15 Q450,8 540,15 T720,15 Q810,6 900,15 T1080,15 Q1170,8 1260,15 T1440,15" fill="none" stroke="var(--border)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section about-section">
+    <div class="section-inner">
+      <h2 class="section-title">ABOUT</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            I'm a <span class="highlight highlight-yellow">passionate software engineer</span> and MS Computer Science student at
+            <strong>Rutgers University</strong> (GPA: 3.78), currently based in New Brunswick, NJ.
+          </p>
+          <p>
+            My work spans <span class="highlight highlight-pink">full-stack development, cloud infrastructure, and machine learning</span> —
+            from shipping production backends that handle 2K+ requests/minute to fine-tuning BioBERT models
+            achieving 95.6% F1-scores on clinical NLP tasks.
+          </p>
+          <p>
+            I thrive at the intersection of <span class="highlight highlight-cyan">systems thinking and applied AI</span> —
+            building fault-tolerant distributed systems, designing serverless self-healing pipelines on AWS,
+            and creating observability platforms powered by LLMs. I care deeply about code that is
+            reliable, scalable, and actually ships.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <span class="stat-number">2+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Major Projects</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">3.78</span>
+            <span class="stat-label">MS GPA @ Rutgers</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">20+</span>
+            <span class="stat-label">Technologies</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOURNEY ===== -->
+  <section id="experience" class="section journey-section">
+    <div class="section-inner">
+      <h2 class="section-title">My Journey</h2>
+      <h3 class="section-subtitle-sm">Journey Timeline</h3>
+
+      <div class="journey-container">
+        <!-- Timeline (opens on scroll to reveal content; map is cover when closed) -->
+        <div class="journey-timeline">
+            <div class="timeline-list">
+              <div class="timeline-item-flat" data-country="USA">
+                <div class="timeline-dot dot-yellow"></div>
+                <div class="timeline-info">
+                  <h3 class="timeline-company">Software Engineering Intern @ Attention Group LLC</h3>
+                  <p class="timeline-period">Jun 2025 – Dec 2025</p>
+                  <p class="timeline-desc">
+                    Shipped production Node.js/Express + MongoDB backend with 30+ REST endpoints serving 2K+ req/min at 99.9% uptime. Built image-generation workflows with React + OpenCV. Implemented OAuth 2.0 for Twitter API integration, reducing login errors by 85%.
+                  </p>
+                  <span class="timeline-location"><i class="fa fa-map-pin"></i> Remote / New Jersey, USA</span>
+                </div>
+              </div>
+
+              <div class="timeline-item-flat" data-country="USA">
+                <div class="timeline-dot dot-cyan"></div>
+                <div class="timeline-info">
+                  <h3 class="timeline-company">MS, Computer Science @ Rutgers University</h3>
+                  <p class="timeline-period">Sep 2024 – May 2026</p>
+                  <p class="timeline-desc">
+                    GPA: 3.78/4.0. Coursework: Machine Learning, NLP, Computer Vision, Deep Learning, Database Systems, Interpretable AI, Data Structures & Algorithms.
+                  </p>
+                  <span class="timeline-location"><i class="fa fa-map-pin"></i> New Brunswick, NJ, USA</span>
+                </div>
+              </div>
+
+              <div class="timeline-item-flat" data-country="India">
+                <div class="timeline-dot dot-pink"></div>
+                <div class="timeline-info">
+                  <h3 class="timeline-company">Technical Support Engineer L1 @ Sophos</h3>
+                  <p class="timeline-period">Aug 2023 – May 2024</p>
+                  <p class="timeline-desc">
+                    Resolved 200+ technical incidents for IPSec, SSL VPN, VoIP modules. Reduced resolution time by 18%, first-response time by 15%. 95% customer satisfaction rating.
+                  </p>
+                  <span class="timeline-location"><i class="fa fa-map-pin"></i> India</span>
+                </div>
+              </div>
+
+              <div class="timeline-item-flat" data-country="India">
+                <div class="timeline-dot dot-green"></div>
+                <div class="timeline-info">
+                  <h3 class="timeline-company">Research Intern @ Ganpat University</h3>
+                  <p class="timeline-period">Jan 2023 – May 2023</p>
+                  <p class="timeline-desc">
+                    Improved image classification accuracy by 25% on EMOTIC dataset using hybrid CNN (AlexNet + VGG19). Achieved 73.6% validation accuracy on emotion recognition task.
+                  </p>
+                  <span class="timeline-location"><i class="fa fa-map-pin"></i> Gujarat, India</span>
+                </div>
+              </div>
+
+              <div class="timeline-item-flat" data-country="India">
+                <div class="timeline-dot dot-yellow"></div>
+                <div class="timeline-info">
+                  <h3 class="timeline-company">BTech, Computer Engineering @ Ganpat University</h3>
+                  <p class="timeline-period">Jul 2019 – May 2023</p>
+                  <p class="timeline-desc">
+                    GPA: 8.97/10. Built a strong foundation in algorithms, data structures, computer networks, and software engineering.
+                  </p>
+                  <span class="timeline-location"><i class="fa fa-map-pin"></i> Gujarat, India</span>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Treasure map (cover - visible first, folds open on scroll) -->
+        <div class="journey-timeline-back">
+            <svg viewBox="0 0 400 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="600" fill="#f5e6c8"/>
+              <path d="M0 0 L400 0 L400 600 L0 600 Z" fill="none" stroke="#8B4513" stroke-width="4"/>
+              <text x="200" y="60" text-anchor="middle" font-family="Caveat,cursive" font-size="36" fill="#8B4513" font-weight="700">Treasure Map</text>
+              <line x1="80" y1="75" x2="320" y2="75" stroke="#8B4513" stroke-width="1.5" stroke-dasharray="6,3"/>
+              <path d="M60 140 Q120 100 180 160 T300 130 T360 180" fill="none" stroke="#8B4513" stroke-width="2.5" stroke-dasharray="8,4"/>
+              <circle cx="60" cy="140" r="10" fill="#ffd93d" stroke="#8B4513" stroke-width="2"/>
+              <text x="60" y="170" text-anchor="middle" font-family="Caveat,cursive" font-size="14" fill="#8B4513">Start</text>
+              <circle cx="300" cy="130" r="8" fill="#66d9ef" stroke="#8B4513" stroke-width="2"/>
+              <circle cx="360" cy="180" r="12" fill="#ff6b9d" stroke="#8B4513" stroke-width="2"/>
+              <text x="360" y="210" text-anchor="middle" font-family="Caveat,cursive" font-size="20" fill="#8B4513" font-weight="700">X</text>
+              <path d="M60 280 Q140 230 220 310 T380 270" fill="none" stroke="#8B4513" stroke-width="2" stroke-dasharray="8,4"/>
+              <circle cx="220" cy="310" r="6" fill="#a8e6cf" stroke="#8B4513" stroke-width="2"/>
+              <path d="M40 400 Q100 360 180 420 T340 380" fill="none" stroke="#a8e6cf" stroke-width="3" stroke-dasharray="10,5"/>
+              <text x="200" y="480" text-anchor="middle" font-family="Caveat,cursive" font-size="26" fill="#8B4513">Adventures of AJ</text>
+              <path d="M80 530 L140 510 L200 540 L260 500 L320 530" fill="none" stroke="#a8e6cf" stroke-width="3"/>
+              <text x="200" y="570" text-anchor="middle" font-family="Caveat,cursive" font-size="14" fill="#8B4513">🏴‍☠️ scroll to reveal 🏴‍☠️</text>
+            </svg>
+        </div>
+
+        <!-- Map - right column -->
+        <div class="journey-map-wrapper">
+          <div id="journey-map"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section projects-section">
+    <div class="section-inner">
+      <h2 class="section-title">PROJECTS</h2>
+      <p class="section-subtitle">Things I've built that I'm proud of</p>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-tag tag-cyan">FastAPI · React Flow · Gemini AI</span>
+            <a href="https://github.com/abhishekjani123/sentinel" target="_blank" class="project-link"><i class="fa fa-external-link-alt"></i></a>
+          </div>
+          <h3 class="project-title">Sentinel</h3>
+          <p class="project-subtitle">AI-Powered Network Health Monitor</p>
+          <p class="project-desc">
+            Customer-centric observability platform using FastAPI + async SSE processing real-time event streams.
+            Google Gemini AI generates root cause analysis before customer impact. Z-score anomaly detection
+            (2.0σ threshold) with 30-point rolling baselines across O(customers × services) matrix updated every 15s.
+          </p>
+          <div class="project-chips">
+            <span class="chip">FastAPI</span>
+            <span class="chip">React Flow</span>
+            <span class="chip">Gemini AI</span>
+            <span class="chip">SSE</span>
+            <span class="chip">Anomaly Detection</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-tag tag-pink">Python · aiohttp · Flask</span>
+            <a href="https://github.com/abhishekjani123/DIS---Adaptive-Reverse-Proxy-Load-Balancer" target="_blank" class="project-link"><i class="fa fa-external-link-alt"></i></a>
+          </div>
+          <h3 class="project-title">Adaptive Reverse-Proxy</h3>
+          <p class="project-subtitle">High-Performance HTTP Load Balancer</p>
+          <p class="project-desc">
+            HTTP reverse proxy with three adaptive routing algorithms (Round-Robin, SMA, EWMA) reducing tail latency
+            by 35%. Persistent connection pooling with async I/O — 60% latency reduction, 45% throughput
+            improvement. Real-time Plotly.js dashboard with p95 tail latency trends.
+          </p>
+          <div class="project-chips">
+            <span class="chip">Python</span>
+            <span class="chip">aiohttp</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Plotly.js</span>
+            <span class="chip">Load Balancing</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-tag tag-yellow">AWS Lambda · Step Functions · CDK</span>
+            <a href="https://github.com/madil786110/RunBook-Ranger" target="_blank" class="project-link"><i class="fa fa-external-link-alt"></i></a>
+          </div>
+          <h3 class="project-title">Runbook Ranger</h3>
+          <p class="project-subtitle">AWS Auto-Remediation Bot</p>
+          <p class="project-desc">
+            Serverless self-healing system using AWS Lambda, Step Functions, and EventBridge to detect and resolve
+            incidents automatically — MTTR from minutes to seconds. Production-grade safety: distributed resource
+            locking, idempotency keys, blast-radius limits. Runbooks-as-Code engine in Python/YAML via AWS CDK.
+          </p>
+          <div class="project-chips">
+            <span class="chip">AWS Lambda</span>
+            <span class="chip">Step Functions</span>
+            <span class="chip">EventBridge</span>
+            <span class="chip">CDK</span>
+            <span class="chip">IAM</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-tag tag-green">Python · PSI · Data Contracts</span>
+            <a href="https://github.com/madil786110/data-reliability-guardrails" target="_blank" class="project-link"><i class="fa fa-external-link-alt"></i></a>
+          </div>
+          <h3 class="project-title">Data Reliability Guardrails</h3>
+          <p class="project-subtitle">Fault-Tolerant Pipeline Validation</p>
+          <p class="project-desc">
+            Fault-tolerant validation system enforcing strict data contracts (Schema, Freshness, Distribution)
+            preventing silent data failures in batch pipelines. PSI algorithm + volume checks detect distribution
+            shifts with &lt;5ms latency. 98% automated detection rate via custom benchmarking with failure injection.
+          </p>
+          <div class="project-chips">
+            <span class="chip">Python</span>
+            <span class="chip">PSI</span>
+            <span class="chip">Schema Validation</span>
+            <span class="chip">Data Contracts</span>
+          </div>
+        </div>
+
+        <div class="project-card project-card-wide">
+          <div class="project-header">
+            <span class="project-tag tag-cyan">BioBERT · Hugging Face · NLP</span>
+            <a href="https://github.com/patelshrey40/Revolutionizing-Clinical-Safety-Explainable-AI-for-Adverse-Drug-Event-Detection" target="_blank" class="project-link"><i class="fa fa-external-link-alt"></i></a>
+          </div>
+          <h3 class="project-title">ADE Detection with Explainable Counterfactuals</h3>
+          <p class="project-subtitle">Clinical NLP + BioBERT</p>
+          <p class="project-desc">
+            Fine-tuned BioBERT on ADE-Corpus V2 (11,914 clinical sentences) achieving <strong>95.6% F1-score</strong>
+            (95.3% precision, 96.2% recall). Counterfactual analysis revealed 76.5% prediction flip rate in ADE-positive
+            cases vs 1.9% in non-ADE. Evaluated lexical robustness via RxNorm API drug name substitution across 8,448 sentences.
+          </p>
+          <div class="project-chips">
+            <span class="chip">BioBERT</span>
+            <span class="chip">Hugging Face</span>
+            <span class="chip">PyTorch</span>
+            <span class="chip">NLP</span>
+            <span class="chip">Counterfactuals</span>
+            <span class="chip">RxNorm API</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section skills-section">
+    <div class="section-inner">
+      <h2 class="section-title">SKILLS</h2>
+
+      <div class="skills-grid">
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-code"></i></div>
+            <h3 class="skill-card-title">Languages</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+            <div class="skill-item"><i class="fas fa-code"></i> C++</div>
+            <div class="skill-item"><i class="fab fa-java"></i> Java</div>
+            <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+            <div class="skill-item"><i class="fas fa-code"></i> TypeScript</div>
+            <div class="skill-item"><i class="fas fa-terminal"></i> C</div>
+            <div class="skill-item"><i class="fas fa-hashtag"></i> SQL</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fab fa-react"></i></div>
+            <h3 class="skill-card-title">Frameworks</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item"><i class="fab fa-react"></i> React</div>
+            <div class="skill-item"><i class="fab fa-node-js"></i> Node.js</div>
+            <div class="skill-item"><i class="fas fa-layer-group"></i> Next.js</div>
+            <div class="skill-item"><i class="fas fa-bolt"></i> FastAPI</div>
+            <div class="skill-item"><i class="fab fa-python"></i> Flask</div>
+            <div class="skill-item"><i class="fas fa-globe"></i> Django</div>
+            <div class="skill-item"><i class="fas fa-server"></i> Express</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-brain"></i></div>
+            <h3 class="skill-card-title">ML / AI</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item"><i class="fab fa-python"></i> PyTorch</div>
+            <div class="skill-item"><i class="fas fa-project-diagram"></i> TensorFlow</div>
+            <div class="skill-item"><i class="fas fa-chart-line"></i> Scikit-Learn</div>
+            <div class="skill-item"><i class="fas fa-eye"></i> OpenCV</div>
+            <div class="skill-item"><i class="fas fa-robot"></i> BioBERT</div>
+            <div class="skill-item"><i class="fas fa-table"></i> Pandas</div>
+            <div class="skill-item"><i class="fas fa-calculator"></i> NumPy</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fab fa-aws"></i></div>
+            <h3 class="skill-card-title">Cloud & DevOps</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item"><i class="fab fa-aws"></i> AWS Lambda</div>
+            <div class="skill-item"><i class="fab fa-aws"></i> Step Functions</div>
+            <div class="skill-item"><i class="fab fa-docker"></i> Docker</div>
+            <div class="skill-item"><i class="fas fa-cloud"></i> EventBridge</div>
+            <div class="skill-item"><i class="fas fa-code-branch"></i> CDK</div>
+            <div class="skill-item"><i class="fas fa-chart-bar"></i> Prometheus</div>
+            <div class="skill-item"><i class="fas fa-tachometer-alt"></i> Grafana</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-database"></i></div>
+            <h3 class="skill-card-title">Databases</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item"><i class="fas fa-database"></i> PostgreSQL</div>
+            <div class="skill-item"><i class="fas fa-leaf"></i> MongoDB</div>
+            <div class="skill-item"><i class="fas fa-database"></i> MySQL</div>
+            <div class="skill-item"><i class="fas fa-fire"></i> ChromaDB</div>
+            <div class="skill-item"><i class="fas fa-archive"></i> Redis</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon"><i class="fas fa-tools"></i></div>
+            <h3 class="skill-card-title">Tools & More</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
+            <div class="skill-item"><i class="fab fa-linux"></i> Linux</div>
+            <div class="skill-item"><i class="fas fa-network-wired"></i> REST API</div>
+            <div class="skill-item"><i class="fas fa-lock"></i> OAuth 2.0</div>
+            <div class="skill-item"><i class="fas fa-sitemap"></i> Microservices</div>
+            <div class="skill-item"><i class="fas fa-infinity"></i> CI/CD</div>
+            <div class="skill-item"><i class="fas fa-server"></i> Distributed Sys.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION & HONORS ===== -->
+  <section id="education" class="section edu-section">
+    <div class="section-inner edu-honors-grid">
+      <div class="edu-block">
+        <h2 class="section-title">EDUCATION</h2>
+        <div class="edu-card">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-info">
+            <h3>Master of Science, Computer Science</h3>
+            <p class="edu-school">Rutgers University</p>
+            <p class="edu-gpa">GPA: 3.78 / 4.0</p>
+            <p class="edu-period">Sep 2024 – May 2026 · New Brunswick, NJ</p>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">🏛️</div>
+          <div class="edu-info">
+            <h3>Bachelor of Technology, Computer Engineering</h3>
+            <p class="edu-school">Ganpat University</p>
+            <p class="edu-gpa">GPA: 8.97 / 10</p>
+            <p class="edu-period">Jul 2019 – May 2023 · Gujarat, India</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="honors-block">
+        <h2 class="section-title">HONORS</h2>
+        <div class="honor-card">
+          <div class="honor-icon">🏆</div>
+          <div class="honor-info">
+            <h3>Amazon ML Summer School</h3>
+            <p class="honor-org">Amazon · Jul 2022</p>
+            <p class="honor-desc">
+              Selected participant for intensive ML program covering Supervised Learning, Deep Neural Networks,
+              Probabilistic Graphical Models, Reinforcement Learning, and Causal Inference.
+            </p>
+          </div>
+        </div>
+        <div class="honor-card">
+          <div class="honor-icon">🛡️</div>
+          <div class="honor-info">
+            <h3>Sophos Certified Engineer</h3>
+            <p class="honor-org">Sophos · Sep 2023</p>
+            <p class="honor-desc">
+              Certified in Sophos Firewall v19.5, v20.0 and MDR — demonstrating expertise in network security protocols.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section contact-section">
+    <div class="section-inner">
+      <h2 class="section-title">GET IN TOUCH</h2>
+      <p class="contact-subtitle">Let's build something amazing together</p>
+
+      <div class="contact-links">
+        <a href="mailto:abhishekjani075@gmail.com" class="contact-card contact-email">
+          <i class="fa fa-envelope"></i>
+          <span>Email</span>
+          <small>abhishekjani075@gmail.com</small>
+        </a>
+        <a href="https://www.linkedin.com/in/abhishekjani075/" target="_blank" class="contact-card contact-linkedin">
+          <i class="fab fa-linkedin"></i>
+          <span>LinkedIn</span>
+          <small>Connect with me</small>
+        </a>
+        <a href="https://github.com/abhishekjani123" target="_blank" class="contact-card contact-github">
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+          <small>See my code</small>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <p class="footer-name">ABHISHEK JANI</p>
+          <p class="footer-role">Software Engineer · MS CS @ Rutgers</p>
+        </div>
+        <div class="footer-nav">
+          <a href="#hero" class="nav-link">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#experience" class="nav-link">Journey</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#skills" class="nav-link">Skills</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://github.com/abhishekjani123" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/abhishekjani075/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:abhishek.jani.career@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Abhishek Jani</p>
+        <a href="terminal.html" class="footer-terminal-link" target="_blank">
+          <i class="fas fa-terminal"></i> Terminal Mode
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    // ===== Scroll Restoration =====
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    // ===== Loader =====
+    const loader = document.querySelector('.loader-overlay');
+    function hideLoader() {
+      if (loader) setTimeout(() => loader.classList.add('hidden'), 1400);
+    }
+    window.addEventListener('load', hideLoader);
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) hideLoader();
+    });
+
+    // ===== Theme Toggle =====
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const icon = themeToggle.querySelector('i');
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = body.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      body.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeIcon(next);
+    });
+
+    function updateThemeIcon(theme) {
+      icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // ===== Smooth Scroll =====
+    document.querySelectorAll('.nav-link, .btn').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    });
+
+    // ===== Smart Navbar =====
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
+
+    function updateNavActive() {
+      const wh = window.innerHeight;
+      const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'contact'];
+      let activeId = 'hero';
+      sections.forEach(id => {
+        const s = document.getElementById(id);
+        if (s) {
+          const r = s.getBoundingClientRect();
+          if (r.top <= wh / 2 && r.bottom >= wh / 2) activeId = id;
+        }
+      });
+      document.querySelectorAll('.nav-link').forEach(l => {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === `#${activeId}`) l.classList.add('active');
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      const current = window.pageYOffset;
+      if (current > lastScroll && current > 100) {
+        navbar.classList.add('navbar-hidden');
+      } else {
+        navbar.classList.remove('navbar-hidden');
+      }
+      updateNavActive();
+      lastScroll = current;
+    });
+    window.addEventListener('resize', updateNavActive);
+    updateNavActive();
+
+    // ===== Hero Photo Tilt =====
+    const heroPhoto = document.querySelector('.hero-photo');
+    if (heroPhoto) {
+      let photoTilted = false;
+      window.addEventListener('scroll', () => {
+        if (!photoTilted && window.scrollY > 5) {
+          heroPhoto.classList.add('tilted');
+          photoTilted = true;
+        }
+      });
+      heroPhoto.addEventListener('mouseenter', () => heroPhoto.classList.remove('tilted'));
+      heroPhoto.addEventListener('mouseleave', () => { if (photoTilted) heroPhoto.classList.add('tilted'); });
+    }
+
+    // ===== Falling Terminal Deco (only terminal falls) =====
+    let decoFallen = false;
+    const decoTerminal = document.querySelector('.deco-terminal');
+    const heroContent = document.querySelector('.hero-content');
+
+    function calcFallDistance() {
+      if (!heroContent || !decoTerminal) return;
+      const heroRect = heroContent.getBoundingClientRect();
+      const heroBottom = heroRect.bottom;
+      const rect = decoTerminal.getBoundingClientRect();
+      const dist = Math.max(20, heroBottom - rect.bottom - 20);
+      decoTerminal.style.setProperty('--fall-distance', `${dist}px`);
+    }
+
+    calcFallDistance();
+    window.addEventListener('resize', calcFallDistance);
+    window.addEventListener('scroll', () => {
+      if (!decoFallen && window.scrollY > 5 && decoTerminal) {
+        decoTerminal.classList.add('falling');
+        decoFallen = true;
+      }
+    });
+
+    // ===== Paper Tear Parallax (reference implementation) =====
+    const pageGap = document.querySelector('.page-gap');
+    const paperTearBottom = document.querySelector('.paper-tear-bottom');
+    const paperTearBottomBgGray = document.querySelector('.paper-tear-bottom svg path[fill="#d0d0d0"]');
+    const paperTearBottomBgWhite = document.querySelector('.paper-tear-bottom svg path[fill="#ffffff"]');
+    const tearTapeSticker = document.querySelector('.tear-tape-sticker');
+    const minGapHeight = -30;
+
+    function updateTapePosition() {
+      if (paperTearBottom && tearTapeSticker) {
+        const rect = paperTearBottom.getBoundingClientRect();
+        tearTapeSticker.style.setProperty('--tape-position', `${rect.top}px`);
+      }
+    }
+
+    function updateGapParallax() {
+      if (!pageGap || !paperTearBottom) return;
+      if (window.innerWidth <= 768) return;
+
+      const scrollY = window.scrollY;
+      const initialGapHeight = 300;
+      const scrollStart = 100;
+      const scrollRange = 200;
+      const stickerDelay = 30;
+      const stickerStart = scrollStart + scrollRange + stickerDelay;
+      const stickerRange = 60;
+
+      updateTapePosition();
+
+      if (scrollY <= scrollStart) {
+        pageGap.style.setProperty('height', initialGapHeight + 'px', 'important');
+        paperTearBottom.style.setProperty('margin-top', '0px', 'important');
+        if (paperTearBottomBgGray) paperTearBottomBgGray.style.opacity = '1';
+        if (tearTapeSticker) {
+          tearTapeSticker.style.transform = 'rotate(-8deg) translateY(-40px) translateZ(30px) rotateX(35deg)';
+          tearTapeSticker.style.opacity = '0';
+        }
+      } else if (scrollY >= scrollStart && scrollY <= scrollStart + scrollRange) {
+        const progress = (scrollY - scrollStart) / scrollRange;
+        const currentHeight = initialGapHeight - (initialGapHeight - minGapHeight) * progress;
+        if (currentHeight >= 0) {
+          pageGap.style.setProperty('height', currentHeight + 'px', 'important');
+          paperTearBottom.style.setProperty('margin-top', '0px', 'important');
+          if (paperTearBottomBgGray) paperTearBottomBgGray.style.opacity = '1';
+          if (tearTapeSticker) {
+            tearTapeSticker.style.transform = 'rotate(-8deg) translateY(-100px) translateZ(50px) rotateX(45deg)';
+            tearTapeSticker.style.opacity = '0';
+          }
+        } else {
+          pageGap.style.setProperty('height', '0px', 'important');
+          paperTearBottom.style.setProperty('margin-top', currentHeight + 'px', 'important');
+          const negativeProgress = Math.abs(currentHeight) / Math.abs(minGapHeight);
+          const opacity = 1 - negativeProgress;
+          if (paperTearBottomBgGray) paperTearBottomBgGray.style.opacity = opacity;
+          if (tearTapeSticker) {
+            tearTapeSticker.style.transform = 'rotate(-8deg) translateY(-100px) translateZ(50px) rotateX(45deg)';
+            tearTapeSticker.style.opacity = '0';
+          }
+        }
+      } else if (scrollY > stickerStart && scrollY < stickerStart + stickerRange) {
+        pageGap.style.setProperty('height', '0px', 'important');
+        paperTearBottom.style.setProperty('margin-top', minGapHeight + 'px', 'important');
+        if (paperTearBottomBgGray) paperTearBottomBgGray.style.opacity = '0';
+        if (tearTapeSticker) {
+          const stickerProgress = (scrollY - stickerStart) / stickerRange;
+          const translateY = -40 + (40 * stickerProgress);
+          const translateZ = 30 - (30 * stickerProgress);
+          const rotateX = 35 - (35 * stickerProgress);
+          const opacityVal = Math.min(1, Math.max(0, (stickerProgress - 0.35) * 1.54));
+          tearTapeSticker.style.transform = `rotate(-8deg) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg)`;
+          tearTapeSticker.style.opacity = opacityVal;
+        }
+      } else if (scrollY >= stickerStart + stickerRange) {
+        pageGap.style.setProperty('height', '0px', 'important');
+        paperTearBottom.style.setProperty('margin-top', minGapHeight + 'px', 'important');
+        if (paperTearBottomBgGray) paperTearBottomBgGray.style.opacity = '0';
+        if (tearTapeSticker) {
+          tearTapeSticker.style.transform = 'rotate(-8deg) translateY(0px) translateZ(0px) rotateX(0deg)';
+          tearTapeSticker.style.opacity = '1';
+        }
+      } else {
+        pageGap.style.setProperty('height', '0px', 'important');
+        paperTearBottom.style.setProperty('margin-top', minGapHeight + 'px', 'important');
+        if (paperTearBottomBgGray) paperTearBottomBgGray.style.opacity = '0';
+        if (tearTapeSticker) {
+          tearTapeSticker.style.transform = 'rotate(-8deg) translateY(-40px) translateZ(30px) rotateX(35deg)';
+          tearTapeSticker.style.opacity = '0';
+        }
+      }
+    }
+
+    window.addEventListener('scroll', updateGapParallax);
+    window.addEventListener('resize', updateGapParallax);
+    requestAnimationFrame(() => { updateGapParallax(); });
+
+    // ===== Scroll Highlights (reference implementation) =====
+    const highlights = document.querySelectorAll('.highlight');
+    const highlightData = new Map();
+    highlights.forEach((h, i) => {
+      const direction = i % 2 === 0 ? 'left' : 'right';
+      h.setAttribute('data-direction', direction);
+      highlightData.set(h, { hasStarted: false, startScroll: 0, duration: 150 });
+    });
+
+    function updateHighlights() {
+      const scrollY = window.scrollY;
+      const wh = window.innerHeight;
+      highlights.forEach(h => {
+        const rect = h.getBoundingClientRect();
+        const elementTop = rect.top + scrollY;
+        const data = highlightData.get(h);
+        const triggerPoint = scrollY + wh * 0.8;
+
+        if (!data.hasStarted && triggerPoint >= elementTop) {
+          data.hasStarted = true;
+          data.startScroll = scrollY;
+        }
+        if (data.hasStarted) {
+          const p = Math.min(1, Math.max(0, (scrollY - data.startScroll) / data.duration));
+          h.style.setProperty('--highlight-progress', `${p * 100}%`);
+        }
+        if (data.hasStarted && scrollY < data.startScroll - 50) {
+          data.hasStarted = false;
+          h.style.setProperty('--highlight-progress', '0%');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateHighlights);
+    requestAnimationFrame(updateHighlights);
+
+    // ===== Mobile Menu Toggle =====
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (mobileMenuBtn && mobileNav) {
+      mobileMenuBtn.addEventListener('click', () => mobileNav.classList.toggle('open'));
+      mobileNav.querySelectorAll('.nav-link').forEach(l => {
+        l.addEventListener('click', () => mobileNav.classList.remove('open'));
+      });
+    }
+
+    // ===== Scroll Progress Bar =====
+    const progressFill = document.querySelector('.progress-bar-fill');
+    const checkpoints = document.querySelectorAll('.checkpoint');
+
+    function updateProgress() {
+      const wh = window.innerHeight;
+      const docH = document.documentElement.scrollHeight - wh;
+      const pct = (window.scrollY / docH) * 100;
+      progressFill.style.width = pct + '%';
+
+      const sections = ['hero', 'about', 'experience', 'projects', 'skills', 'contact'];
+      let active = 0;
+      sections.forEach((id, i) => {
+        const s = document.getElementById(id);
+        if (s) {
+          const r = s.getBoundingClientRect();
+          if (r.top <= wh / 2 && r.bottom >= wh / 2) active = i;
+        }
+      });
+      checkpoints.forEach((c, i) => {
+        c.classList.toggle('active', i <= active);
+        c.classList.toggle('current', i === active);
+      });
+    }
+
+    checkpoints.forEach(c => {
+      c.addEventListener('click', () => {
+        const s = document.getElementById(c.getAttribute('data-section'));
+        if (s) s.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    // ===== Intersection Observer (fade-in for sections + timeline items) =====
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('fade-in'); });
+    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.timeline-item-flat').forEach(el => observer.observe(el));
+    document.querySelectorAll('.section').forEach(el => observer.observe(el));
+
+    // ===== Journey Book Flip (map visible first, opens on scroll to reveal timeline) =====
+    const journeyTimeline = document.querySelector('.journey-timeline');
+    const journeyTimelineBack = document.querySelector('.journey-timeline-back');
+    const journeyTimelineData = { hasStarted: false, startScroll: 0, pageRange: 200 };
+
+    function updateJourneyTimeline() {
+      if (!journeyTimeline || !journeyTimelineBack) return;
+
+      if (window.innerWidth < 769) {
+        journeyTimeline.style.transform = '';
+        journeyTimeline.style.zIndex = '';
+        journeyTimeline.style.overflowY = '';
+        journeyTimelineBack.style.transform = '';
+        journeyTimelineBack.style.zIndex = '';
+        return;
+      }
+
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const rect = journeyTimeline.getBoundingClientRect();
+      const elementTop = rect.top + scrollY;
+      const triggerPoint = scrollY + windowHeight * 0.5;
+
+      if (!journeyTimelineData.hasStarted && triggerPoint >= elementTop) {
+        journeyTimelineData.hasStarted = true;
+        journeyTimelineData.startScroll = scrollY;
+      }
+
+      if (journeyTimelineData.hasStarted) {
+        const progress = Math.min(1, Math.max(0, (scrollY - journeyTimelineData.startScroll) / journeyTimelineData.pageRange));
+        const rotateY = 180 - (180 * progress);
+
+        journeyTimeline.style.transform = `rotateY(${rotateY}deg)`;
+        journeyTimelineBack.style.transform = `rotateY(${rotateY}deg)`;
+
+        if (rotateY > 95) {
+          journeyTimeline.style.zIndex = '1';
+          journeyTimelineBack.style.zIndex = '100';
+        } else {
+          journeyTimeline.style.zIndex = '100';
+          journeyTimelineBack.style.zIndex = '1';
+        }
+
+        if (progress >= 1) {
+          journeyTimeline.style.overflowY = 'auto';
+        } else {
+          journeyTimeline.style.overflowY = 'hidden';
+        }
+      } else {
+        journeyTimeline.style.transform = 'rotateY(180deg)';
+        journeyTimelineBack.style.transform = 'rotateY(180deg)';
+        journeyTimeline.style.zIndex = '1';
+        journeyTimelineBack.style.zIndex = '100';
+        journeyTimeline.style.overflowY = 'hidden';
+      }
+    }
+
+    window.addEventListener('scroll', updateJourneyTimeline);
+    window.addEventListener('resize', updateJourneyTimeline);
+    requestAnimationFrame(() => { updateJourneyTimeline(); });
+
+    // ===== Matrix Typing Effect =====
+    const greetingEl = document.getElementById('hero-greeting');
+    const finalText = 'Hi there! 👋';
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+
+    function matrixEffect() {
+      let iterations = 0;
+      const interval = setInterval(() => {
+        greetingEl.textContent = finalText.split('').map((char, i) => {
+          if (i < iterations) return finalText[i];
+          if (char === ' ' || char === '👋') return char;
+          return chars[Math.floor(Math.random() * chars.length)];
+        }).join('');
+        if (iterations >= finalText.length) clearInterval(interval);
+        iterations += 1 / 3;
+      }, 50);
+    }
+    setTimeout(matrixEffect, 600);
+
+    // ===== Leaflet Journey Map =====
+    const initialView = { center: [25, 20], zoom: 2 };
+    const map = L.map('journey-map', {
+      center: initialView.center,
+      zoom: initialView.zoom,
+      scrollWheelZoom: false,
+      zoomControl: true
+    });
+
+    L.tileLayer('https://watercolormaps.collection.cooperhewitt.org/tile/watercolor/{z}/{x}/{y}.jpg', {
+      attribution: '© Stamen Design, © OpenStreetMap contributors',
+      maxZoom: 16
+    }).addTo(map);
+
+    const locations = [
+      {
+        coords: [40.5008, -74.4474],
+        country: 'USA',
+        label: 'New Jersey, USA',
+        companies: [
+          { company: 'Rutgers University', role: 'MS Computer Science', period: '2024–2026', city: 'New Brunswick, NJ' },
+          { company: 'Attention Group LLC', role: 'Software Engineering Intern', period: '2025', city: 'Remote/NJ' }
+        ]
+      },
+      {
+        coords: [23.4, 72.7],
+        country: 'India',
+        label: 'Gujarat, India',
+        companies: [
+          { company: 'Sophos', role: 'Technical Support Engineer L1', period: '2023–2024', city: 'India' },
+          { company: 'Ganpat University', role: 'Research Intern + BTech', period: '2019–2023', city: 'Gujarat' }
+        ]
+      }
+    ];
+
+    const markers = {};
+
+    locations.forEach(loc => {
+      const isCurrent = loc.country === 'USA';
+      const markerIcon = L.divIcon({
+        className: isCurrent ? 'neo-marker neo-marker-current' : 'neo-marker',
+        html: `<div class="marker-pin">${isCurrent ? '📍' : '📌'}</div><div class="marker-label">${loc.label}</div>`,
+        iconSize: isCurrent ? [120, 40] : [110, 40],
+        iconAnchor: [15, 35],
+        popupAnchor: [30, -35]
+      });
+
+      let popupContent = `<div class="neo-popup"><h4>${loc.label}</h4>`;
+      loc.companies.forEach((c, i) => {
+        if (i > 0) popupContent += '<hr style="border-color:#111;margin:6px 0">';
+        popupContent += `<div class="popup-entry"><strong>${c.company}</strong><br/><em>${c.role}</em><br/><small>${c.city} · ${c.period}</small></div>`;
+      });
+      popupContent += '</div>';
+
+      const marker = L.marker(loc.coords, { icon: markerIcon }).addTo(map);
+      marker.bindPopup(popupContent);
+      markers[loc.country] = marker;
+    });
+
+    // Journey path: India → USA (Master's & experience)
+    const gujarat = [23.4, 72.7];
+    const newJersey = [40.5008, -74.4474];
+    const journeyPath = L.polyline([gujarat, newJersey], {
+      color: '#333',
+      weight: 2,
+      opacity: 0.7,
+      dashArray: '10, 10'
+    }).addTo(map);
+
+    // Airplane emoji marker at midpoint (Atlantic) — denotes travel for Master's
+    const midLat = (gujarat[0] + newJersey[0]) / 2;
+    const midLng = (gujarat[1] + newJersey[1]) / 2;
+    const planeIcon = L.divIcon({
+      className: 'neo-marker neo-marker-plane',
+      html: `<div class="marker-pin">✈️</div><div class="marker-label">India → USA</div>`,
+      iconSize: [100, 40],
+      iconAnchor: [25, 20],
+      popupAnchor: [0, -20]
+    });
+    const planeMarker = L.marker([midLat, midLng], { icon: planeIcon }).addTo(map);
+    planeMarker.bindPopup('<div class="neo-popup"><h4>✈️ Journey</h4><p>Traveled from India to USA for MS in Computer Science @ Rutgers & professional experience</p></div>');
+
+    document.querySelectorAll('.timeline-item-flat').forEach(item => {
+      item.addEventListener('click', () => {
+        const country = item.getAttribute('data-country');
+        const marker = markers[country];
+        if (marker) {
+          map.setView(marker.getLatLng(), 5, { animate: true, duration: 1 });
+          setTimeout(() => marker.openPopup(), 600);
+        }
+      });
+    });
+  </script>
+
+  </div><!-- /.page-wrapper -->
+</body>
+</html>
