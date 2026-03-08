@@ -1,4 +1,4 @@
-# Abhishek Jani — Portfolio
+# Abhishek Jani
 
 Personal portfolio site built with HTML, CSS, and vanilla JavaScript in a neo-brutalist style.
 
