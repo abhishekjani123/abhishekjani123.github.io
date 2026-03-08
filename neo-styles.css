@@ -2048,7 +2048,12 @@ html {
     position: relative;
     width: 100%;
     height: auto;
-    max-height: 500px;
+    max-height: none;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    overflow: visible;
     transform: none;
   }
 
@@ -2059,6 +2064,56 @@ html {
   .journey-map-wrapper {
     height: 400px;
   }
+
+  /* Journey: card layout like Projects (tablet + mobile) */
+  .timeline-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .timeline-item-flat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
+    background: var(--bg-card);
+    border-bottom: none;
+    cursor: default;
+    opacity: 1;
+    transform: none;
+  }
+
+  .timeline-item-flat:hover {
+    transform: translate(var(--shadow-offset), var(--shadow-offset));
+    box-shadow: none;
+    background: var(--bg-card);
+  }
+
+  .timeline-item-flat .timeline-dot {
+    display: none;
+  }
+
+  .timeline-item-flat .timeline-period {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border: 2px solid var(--border);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    display: inline-block;
+    margin-bottom: 4px;
+    width: fit-content;
+  }
+
+  .timeline-item-flat:nth-child(1) .timeline-period { background: var(--yellow); }
+  .timeline-item-flat:nth-child(2) .timeline-period { background: var(--cyan); }
+  .timeline-item-flat:nth-child(3) .timeline-period { background: var(--pink); }
+  .timeline-item-flat:nth-child(4) .timeline-period { background: var(--green); }
+  .timeline-item-flat:nth-child(5) .timeline-period { background: var(--yellow); }
 
   .right-sidebar-strip {
     display: none;
