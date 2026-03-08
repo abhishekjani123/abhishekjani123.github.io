@@ -4,4 +4,4 @@ Personal portfolio site built with HTML, CSS, and vanilla JavaScript in a neo-br
 
 ## Live Site
 
-[https://abhishekjani123.github.io/](https://abhishekjani123.github.io/) (once deployed)
+**[https://abhishekjani123.github.io/](https://abhishekjani123.github.io/)**

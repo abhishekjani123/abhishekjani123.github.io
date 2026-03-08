@@ -732,6 +732,17 @@
     }
     window.scrollTo(0, 0);
 
+    // ===== Scroll performance: RAF throttle + passive =====
+    const scrollOpt = { passive: true };
+    function throttleScroll(fn) {
+      let ticking = false;
+      return function() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { fn(); ticking = false; });
+      };
+    }
+
     // ===== Loader =====
     const loader = document.querySelector('.loader-overlay');
     function hideLoader() {
@@ -796,7 +807,7 @@
       });
     }
 
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', throttleScroll(() => {
       const current = window.pageYOffset;
       if (current > lastScroll && current > 100) {
         navbar.classList.add('navbar-hidden');
@@ -805,7 +816,7 @@
       }
       updateNavActive();
       lastScroll = current;
-    });
+    }), scrollOpt);
     window.addEventListener('resize', updateNavActive);
     updateNavActive();
 
@@ -813,12 +824,12 @@
     const heroPhoto = document.querySelector('.hero-photo');
     if (heroPhoto) {
       let photoTilted = false;
-      window.addEventListener('scroll', () => {
+      window.addEventListener('scroll', throttleScroll(() => {
         if (!photoTilted && window.scrollY > 5) {
           heroPhoto.classList.add('tilted');
           photoTilted = true;
         }
-      });
+      }), scrollOpt);
       heroPhoto.addEventListener('mouseenter', () => heroPhoto.classList.remove('tilted'));
       heroPhoto.addEventListener('mouseleave', () => { if (photoTilted) heroPhoto.classList.add('tilted'); });
     }
@@ -839,12 +850,12 @@
 
     calcFallDistance();
     window.addEventListener('resize', calcFallDistance);
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', throttleScroll(() => {
       if (!decoFallen && window.scrollY > 5 && decoTerminal) {
         decoTerminal.classList.add('falling');
         decoFallen = true;
       }
-    });
+    }), scrollOpt);
 
     // ===== Paper Tear Parallax (reference implementation) =====
     const pageGap = document.querySelector('.page-gap');
@@ -937,7 +948,7 @@
       }
     }
 
-    window.addEventListener('scroll', updateGapParallax);
+    window.addEventListener('scroll', throttleScroll(updateGapParallax), scrollOpt);
     window.addEventListener('resize', updateGapParallax);
     requestAnimationFrame(() => { updateGapParallax(); });
 
@@ -974,7 +985,7 @@
       });
     }
 
-    window.addEventListener('scroll', updateHighlights);
+    window.addEventListener('scroll', throttleScroll(updateHighlights), scrollOpt);
     requestAnimationFrame(updateHighlights);
 
     // ===== Mobile Menu Toggle =====
@@ -992,6 +1003,7 @@
     const checkpoints = document.querySelectorAll('.checkpoint');
 
     function updateProgress() {
+      if (window.innerWidth <= 768) return;
       const wh = window.innerHeight;
       const docH = document.documentElement.scrollHeight - wh;
       const pct = (window.scrollY / docH) * 100;
@@ -1019,7 +1031,7 @@
       });
     });
 
-    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('scroll', throttleScroll(updateProgress), scrollOpt);
     window.addEventListener('resize', updateProgress);
     updateProgress();
 
@@ -1088,7 +1100,7 @@
       }
     }
 
-    window.addEventListener('scroll', updateJourneyTimeline);
+    window.addEventListener('scroll', throttleScroll(updateJourneyTimeline), scrollOpt);
     window.addEventListener('resize', updateJourneyTimeline);
     requestAnimationFrame(() => { updateJourneyTimeline(); });
 
