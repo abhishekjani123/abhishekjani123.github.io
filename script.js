@@ -264,11 +264,11 @@ function printWelcome(pane) {
   const banner = `
 <div class="welcome-banner">
 <pre>
-    _    _     _     _      _    _ 
-   / \\  | |__ (_)___| |__  /_\\  | |
-  / _ \\ | '_ \\| / __| '_ \\/ _ \\ | |
- / ___ \\| |_) | \\__ \\ | | / ___ \\|_|
-/_/   \\_\\_.__/|_|___/_| |_\\_/ \\_(_)
+    ___    __    __    _      __         __  
+   /   |  / /_  / /_  (_)____/ /_  ___  / /__
+  / /| | / __ \\/ __ \\/ / ___/ __ \\/ _ \\/ //_/
+ / ___ |/ /_/ / / / / (__  ) / / /  __/ ,<   
+/_/  |_/_.___/_/ /_/_/____/_/ /_/\\___/_/|_|  
 </pre>
 <div class="welcome-line" style="color:var(--text)">Welcome to <span style="color:var(--yellow);font-weight:700">Abhishek Jani's</span> interactive terminal resume.</div>
 <div class="welcome-line" style="color:var(--text-dim)">Type <span style="color:var(--green);font-weight:700">help</span> to see available commands. Use ↑↓ for history.</div>
