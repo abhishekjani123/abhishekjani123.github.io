@@ -1,0 +1,9 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Abhishek Jani's portfolio and terminal resume",
+  "scripts": {
+    "serve": "npx --yes serve -l 3000",
+    "verify": "node verify.js"
+  }
+}

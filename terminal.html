@@ -19,6 +19,15 @@
 </head>
 <body data-theme="default">
 
+  <!-- Tabs (Claude Code-style) -->
+  <div class="terminal-tabs">
+    <span class="tab">Problems</span>
+    <span class="tab">Output</span>
+    <span class="tab">Debug Console</span>
+    <span class="tab tab-active">Terminal</span>
+    <span class="tab">Ports</span>
+  </div>
+
   <!-- Terminal Header Bar -->
   <div class="terminal-topbar">
     <div class="topbar-dots">
@@ -48,8 +57,11 @@
     <!-- Primary Pane -->
     <div class="terminal-pane" id="pane-primary">
       <div class="terminal-output" id="output-primary"></div>
+      <div class="input-hint-bar" id="hint-primary">
+        <span>? for shortcuts</span>
+      </div>
       <div class="terminal-input-row">
-        <span class="prompt-label" id="prompt-primary">abhishek@portfolio:~$</span>
+        <span class="prompt-label" id="prompt-primary">></span>
         <input type="text" class="terminal-input" id="input-primary" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus />
       </div>
     </div>
@@ -58,8 +70,11 @@
     <div class="pane-divider" id="pane-divider" style="display:none"></div>
     <div class="terminal-pane" id="pane-secondary" style="display:none">
       <div class="terminal-output" id="output-secondary"></div>
+      <div class="input-hint-bar" id="hint-secondary">
+        <span>? for shortcuts</span>
+      </div>
       <div class="terminal-input-row">
-        <span class="prompt-label" id="prompt-secondary">abhishek@portfolio:~$</span>
+        <span class="prompt-label" id="prompt-secondary">></span>
         <input type="text" class="terminal-input" id="input-secondary" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
       </div>
     </div>
@@ -69,6 +84,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.min.js"></script>
 
   <!-- Terminal Scripts -->
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>

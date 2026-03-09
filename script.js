@@ -161,6 +161,10 @@ const panes = {
 
 let activePane = 'primary';
 let currentTheme = localStorage.getItem('terminal-theme') || 'default';
+let portfolioViewReady = false;
+let personalQuestionCount = 0;
+const PERSONAL_QUESTION_LIMIT = 4;
+const RESUME_URL = 'Abhishek.pdf';
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -176,8 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Apply saved theme
   applyTheme(currentTheme);
 
-  // Welcome banner
-  printWelcome('primary');
+  // Disable input until portfolio view animation completes
+  setInputEnabled(false);
+
+  // Run launch animation (typing → portfolio view), then enable input
+  runPortfolioLaunchAnimation('primary');
 
   // Input handlers
   setupInput('primary');
@@ -211,8 +218,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Auto-focus primary
-  panes.primary.inputEl.focus();
+  // ? for shortcuts — click to show help
+  document.getElementById('hint-primary').addEventListener('click', () => {
+    if (!portfolioViewReady) return;
+    activePane = 'primary';
+    handleCommand('primary', ['help']);
+    scrollToBottom('primary');
+  });
+  document.getElementById('hint-secondary').addEventListener('click', () => {
+    activePane = 'secondary';
+    handleCommand('secondary', ['help']);
+    scrollToBottom('secondary');
+  });
+
+  // Focus is set when portfolio launch animation completes
 });
 
 // ===== THEME =====
@@ -259,22 +278,274 @@ function splitVertical() {
   activePane = 'secondary';
 }
 
-// ===== WELCOME BANNER =====
+// ===== SUGGESTED COMMANDS (Claude-style: prompt → thinking → answer) =====
+const QUICK_COMMANDS = [
+  { cmd: 'about', prompt: 'Tell me about Abhishek', desc: 'Learn about me' },
+  { cmd: 'experience', prompt: "What's his work experience?", desc: 'Work history' },
+  { cmd: 'projects', prompt: 'Show his projects', desc: 'Featured projects' },
+  { cmd: 'skills', prompt: 'What are his skills?', desc: 'Tech stack' },
+  { cmd: 'contact', prompt: 'How can I contact him?', desc: 'Get in touch' },
+  { cmd: 'resume', prompt: 'Download full resume', desc: 'Open resume PDF' },
+  { cmd: 'snake', prompt: 'snake', desc: 'Play Snake game' },
+];
+
+// Commands that show "thinking" animation before answering (anything about Abhishek)
+const AI_PERSONAL_COMMANDS = ['about', 'experience', 'exp', 'projects', 'proj', 'skills', 'education', 'edu', 'honors', 'contact'];
+
+const THINKING_DURATION_MS = 3500;
+
+// Satirical "model thinking" messages — poking fun at how LLMs "work"
+const THINKING_MESSAGES = [
+  "Consulting 47 billion parameters...",
+  "Recalling that one training example from 2021...",
+  "Warming up the GPUs...",
+  "Calculating token probabilities...",
+  "Searching for the right neurons to fire...",
+  "Checking if this was in my fine-tuning data...",
+  "Avoiding the phrase 'as an AI'...",
+  "Loading... loading... (already loaded, just vibing)",
+  "Did they mean 'experience' or 'exp'? ... going with both.",
+  "Scrolling through my context window...",
+  "Making this feel natural with artificial delay...",
+  "Pretending to think really hard...",
+  "Picking the most likely next token...",
+  "Consulting the collective knowledge of the internet...",
+  "Running inference on your question...",
+  "Rereading my system prompt for the 47th time...",
+  "Asking myself: is this a hallucination or facts? ... facts.",
+  "Tokenizing your respect... I mean, request.",
+];
+
+function runSuggestion(pane, item) {
+  const cmd = typeof item === 'string' ? item : item.cmd;
+  const displayPrompt = typeof item === 'object' && item.prompt ? item.prompt : cmd;
+  panes[pane].history.unshift(cmd);
+  panes[pane].historyIndex = -1;
+  printCmd(pane, displayPrompt);
+  handleCommand(pane, cmd.toLowerCase().split(/\s+/));
+  scrollToBottom(pane);
+}
+
+function appendThinking(pane) {
+  const block = document.createElement('div');
+  block.className = 'thinking-block';
+  const lineEl = document.createElement('div');
+  lineEl.className = 'thinking-line';
+  lineEl.innerHTML = '<span class="thinking-caret">▌</span> ';
+  block.appendChild(lineEl);
+  panes[pane].outputEl.appendChild(block);
+  scrollToBottom(pane);
+
+  // Cycle through satirical messages
+  const shuffled = [...THINKING_MESSAGES].sort(() => Math.random() - 0.5);
+  const totalDuration = THINKING_DURATION_MS;
+  const msgCount = Math.min(3, shuffled.length);
+  const interval = totalDuration / msgCount;
+
+  let i = 0;
+  const showNext = () => {
+    if (i < msgCount) {
+      const msg = shuffled[i];
+      lineEl.innerHTML = `<span class="thinking-caret">▌</span> <span class="thinking-msg">${escapeHtml(msg)}</span>`;
+      scrollToBottom(pane);
+      i++;
+      if (i < msgCount) setTimeout(showNext, interval);
+    }
+  };
+  setTimeout(showNext, 200);
+}
+
+function removeThinking(pane) {
+  const block = panes[pane].outputEl.querySelector('.thinking-block');
+  if (block) block.remove();
+}
+
+// ===== SATIRICAL "OUT OF CREDITS" MESSAGE (no real block — just a nudge) =====
+function appendCreditsLimitMessage(pane) {
+  const html = `
+<div class="credits-limit-block" data-pane="${pane}">
+  <div class="credits-limit-header">══════════════════════════════════════════</div>
+  <div class="credits-limit-title">You've reached your free tier limit (${PERSONAL_QUESTION_LIMIT}/${PERSONAL_QUESTION_LIMIT}) and JK</div>
+  <div class="credits-limit-header">══════════════════════════════════════════</div>
+  <div class="credits-limit-body">
+    <div class="credits-options-title">Fun options:</div>
+    <div class="credits-option">• <a href="${RESUME_URL}" target="_blank" rel="noopener" class="credits-link credits-reset-link">Download Resume</a> — resets the counter as a reward 😉</div>
+    <div class="credits-option">• Or run <code>resume</code> — same deal, opens PDF & resets</div>
+    <div class="credits-option">• Or keep asking! No actual blocking. We're not monsters.</div>
+    <div class="credits-option">• Or hire Abhishek for unlimited IRL access.</div>
+  </div>
+  <div class="credits-limit-footer">(No credit cards. We accept job offers. 💼)</div>
+  <div class="credits-limit-header">══════════════════════════════════════════</div>
+</div>`;
+  appendHTML(pane, html);
+
+  const lastBlock = panes[pane].outputEl.lastElementChild;
+  const resetLink = lastBlock && lastBlock.querySelector('.credits-reset-link');
+  if (resetLink) {
+    resetLink.addEventListener('click', () => {
+      resetCreditsLimit(pane);
+      appendLine(pane, 'Credits topped off! 🎉', 'output-success');
+    });
+  }
+}
+
+function resetCreditsLimit(pane) {
+  personalQuestionCount = 0;
+}
+
+// ===== PORTFOLIO LAUNCH ANIMATION (like `claude code` in terminal) =====
+const LAUNCH_CMD = 'abhishek resume';
+const TYPING_INTERVAL_MS = 60;
+
+function setInputEnabled(enabled) {
+  portfolioViewReady = enabled;
+  const hintPrimary = document.getElementById('hint-primary');
+  const hintSecondary = document.getElementById('hint-secondary');
+  const inputPrimary = panes.primary.inputEl;
+  const inputSecondary = panes.secondary.inputEl;
+  const inputRow = document.querySelectorAll('.terminal-input-row');
+  if (enabled) {
+    inputPrimary.disabled = false;
+    inputSecondary.disabled = false;
+    inputRow.forEach(el => { el.style.opacity = '1'; el.style.pointerEvents = ''; });
+    if (hintPrimary) hintPrimary.style.pointerEvents = '';
+    if (hintSecondary) hintSecondary.style.pointerEvents = '';
+  } else {
+    inputPrimary.disabled = true;
+    inputSecondary.disabled = true;
+    inputRow.forEach(el => { el.style.opacity = '0.5'; el.style.pointerEvents = 'none'; });
+    if (hintPrimary) hintPrimary.style.pointerEvents = 'none';
+    if (hintSecondary) hintSecondary.style.pointerEvents = 'none';
+  }
+}
+
+function runPortfolioLaunchAnimation(pane) {
+  const output = panes[pane].outputEl;
+
+  // Step 1: Show prompt line with cursor (command will type after it)
+  const lineDiv = document.createElement('div');
+  lineDiv.className = 'welcome-cli-line launch-line';
+  lineDiv.innerHTML = `<span class="cli-prompt">abhishekjani@Mac portfolio %</span> <span class="cli-typing"></span><span class="cli-cursor">▌</span>`;
+  output.appendChild(lineDiv);
+  scrollToBottom(pane);
+
+  const typingEl = lineDiv.querySelector('.cli-typing');
+  const cursorEl = lineDiv.querySelector('.cli-cursor');
+
+  let i = 0;
+  const typeNext = () => {
+    if (i < LAUNCH_CMD.length) {
+      typingEl.textContent += LAUNCH_CMD[i];
+      i++;
+      scrollToBottom(pane);
+      setTimeout(typeNext, TYPING_INTERVAL_MS);
+    } else {
+      // Remove cursor, show tip, then reveal portfolio frame
+      cursorEl.remove();
+      typingEl.style.color = 'var(--text)';
+
+      const tipDiv = document.createElement('div');
+      tipDiv.className = 'welcome-tip';
+      tipDiv.innerHTML = 'Tip: Type <code>help</code> or press <kbd>Ctrl+H</kbd> for all commands.';
+      output.appendChild(tipDiv);
+      scrollToBottom(pane);
+
+      setTimeout(() => {
+        appendPortfolioFrame(pane);
+        setInputEnabled(true);
+        panes.primary.inputEl.focus();
+      }, 400);
+    }
+  };
+  setTimeout(typeNext, 500);
+}
+
+function appendPortfolioFrame(pane) {
+  const suggestionsHtml = QUICK_COMMANDS.map(({ cmd, prompt, desc }) =>
+    `<button type="button" class="cmd-suggestion" data-cmd="${escapeHtml(cmd)}" title="${escapeHtml(desc)}">${escapeHtml(prompt)}</button>`
+  ).join('');
+
+  const frameHtml = `
+<div class="claude-frame claude-frame-enter">
+  <div class="claude-frame-inner">
+    <div class="claude-left">
+      <div class="claude-title">Abhishek Jani · Portfolio v1.0</div>
+      <div class="claude-greeting">Welcome back !</div>
+      <pre class="claude-mascot">
+    *
+  ░░▓▓▓▓▓░░
+  ▓▓▓▓▓▓▓▓▓
+  ▓▓ ◡ ▓▓
+  ░░░▓▓░░░
+      </pre>
+      <div class="claude-meta">MS Computer Science · Rutgers</div>
+      <div class="claude-path">~/Desktop/portfolio</div>
+    </div>
+    <div class="claude-right">
+      <div class="claude-section-title">Tips for getting started</div>
+      <div class="claude-tip-text">Run <code>about</code> to learn about Abhishek, <code>projects</code> for his work, or <code>contact</code> to get in touch.</div>
+      <div class="claude-section-title" style="margin-top:14px">Ask about me</div>
+      <div class="cmd-suggestions">${suggestionsHtml}</div>
+    </div>
+  </div>
+</div>`;
+
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = frameHtml;
+  panes[pane].outputEl.appendChild(wrapper.firstElementChild);
+  scrollToBottom(pane);
+
+  const output = panes[pane].outputEl;
+  output.querySelectorAll('.cmd-suggestion').forEach(btn => {
+    const item = QUICK_COMMANDS.find(q => q.cmd === btn.dataset.cmd);
+    btn.addEventListener('click', () => runSuggestion(pane, item || btn.dataset.cmd));
+  });
+}
+
+// ===== WELCOME BANNER (for split pane - skip animation, show full view) =====
 function printWelcome(pane) {
+  const suggestionsHtml = QUICK_COMMANDS.map(({ cmd, prompt, desc }) =>
+    `<button type="button" class="cmd-suggestion" data-cmd="${escapeHtml(cmd)}" title="${escapeHtml(desc)}">${escapeHtml(prompt)}</button>`
+  ).join('');
+
   const banner = `
-<div class="welcome-banner">
-<pre>
-    _    _     _     _     _          _    
-   / \\  | |__ | |__ (_)___| |__   ___| | __
-  / _ \\ | '_ \\| '_ \\| / __| '_ \\ / _ \\ |/ /
- / ___ \\| |_) | | | | \\__ \\ | | |  __/   &lt; 
-/_/   \\_\\_.__/|_| |_|_|___/_| |_|\\___|_|\\_\\
-</pre>
-<div class="welcome-line" style="color:var(--text)">Welcome to <span style="color:var(--yellow);font-weight:700">Abhishek Jani's</span> interactive terminal resume.</div>
-<div class="welcome-line" style="color:var(--text-dim)">Type <span style="color:var(--green);font-weight:700">help</span> to see available commands. Use ↑↓ for history.</div>
-<div class="welcome-line" style="color:var(--text-dim)">Theme: <span style="color:var(--cyan)">${currentTheme}</span> · Location: <span style="color:var(--pink)">New Brunswick, NJ</span></div>
+<div class="welcome-cli-line">
+  <span class="cli-prompt">abhishekjani@Mac portfolio %</span>
+  <span class="cli-cmd">abhishek resume</span>
+</div>
+<div class="welcome-tip">Tip: Type <code>help</code> or press <kbd>Ctrl+H</kbd> for all commands.</div>
+
+<div class="claude-frame">
+  <div class="claude-frame-inner">
+    <div class="claude-left">
+      <div class="claude-title">Abhishek Jani · Portfolio v1.0</div>
+      <div class="claude-greeting">Welcome back !</div>
+      <pre class="claude-mascot">
+    *
+  ░░▓▓▓▓▓░░
+  ▓▓▓▓▓▓▓▓▓
+  ▓▓ ◡ ▓▓
+  ░░░▓▓░░░
+      </pre>
+      <div class="claude-meta">MS Computer Science · Rutgers</div>
+      <div class="claude-path">~/Desktop/portfolio</div>
+    </div>
+    <div class="claude-right">
+      <div class="claude-section-title">Tips for getting started</div>
+      <div class="claude-tip-text">Run <code>about</code> to learn about Abhishek, <code>projects</code> for his work, or <code>contact</code> to get in touch.</div>
+      <div class="claude-section-title" style="margin-top:14px">Ask about me</div>
+      <div class="cmd-suggestions">${suggestionsHtml}</div>
+    </div>
+  </div>
 </div>`;
   appendHTML(pane, banner);
+
+  // Attach click handlers to suggestions
+  const output = panes[pane].outputEl;
+  output.querySelectorAll('.cmd-suggestion').forEach(btn => {
+    const item = QUICK_COMMANDS.find(q => q.cmd === btn.dataset.cmd);
+    btn.addEventListener('click', () => runSuggestion(pane, item || btn.dataset.cmd));
+  });
 }
 
 // ===== INPUT SETUP =====
@@ -283,6 +554,7 @@ function setupInput(pane) {
 
   input.addEventListener('keydown', e => {
     if (panes[pane].snakeActive) return;
+    if (pane === 'primary' && !portfolioViewReady) return;
 
     if (e.key === 'Enter') {
       const cmd = input.value.trim();
@@ -328,6 +600,13 @@ function setupInput(pane) {
       }
     }
 
+    if (e.ctrlKey && e.key === 'h') {
+      e.preventDefault();
+      handleCommand(pane, ['help']);
+      scrollToBottom(pane);
+      return;
+    }
+
     if (e.ctrlKey && e.key === 'l') {
       e.preventDefault();
       panes[pane].outputEl.innerHTML = '';
@@ -367,6 +646,7 @@ const COMMANDS = {
   date: cmdDate,
   echo: cmdEcho,
   neofetch: cmdNeofetch,
+  resume: cmdResume,
   exit: cmdExit,
   back: cmdExit,
   home: cmdExit,
@@ -376,15 +656,32 @@ function handleCommand(pane, parts) {
   const cmd = parts[0];
   const args = parts.slice(1);
 
-  if (cmd in COMMANDS) {
-    COMMANDS[cmd](pane, args);
-  } else if (cmd === '') {
-    // nothing
-  } else {
-    appendLine(pane, `command not found: ${cmd}. Type 'help' for available commands.`, 'output-error');
+  if (!(cmd in COMMANDS)) {
+    if (cmd !== '') {
+      appendLine(pane, `command not found: ${cmd}. Type 'help' for available commands.`, 'output-error');
+    }
+    scrollToBottom(pane);
+    return;
   }
 
-  scrollToBottom(pane);
+  const isPersonalCmd = AI_PERSONAL_COMMANDS.includes(cmd);
+
+  if (isPersonalCmd) {
+    appendThinking(pane);
+    scrollToBottom(pane);
+    setTimeout(() => {
+      removeThinking(pane);
+      COMMANDS[cmd](pane, args);
+      personalQuestionCount++;
+      if (personalQuestionCount >= PERSONAL_QUESTION_LIMIT) {
+        appendCreditsLimitMessage(pane);
+      }
+      scrollToBottom(pane);
+    }, THINKING_DURATION_MS);
+  } else {
+    COMMANDS[cmd](pane, args);
+    scrollToBottom(pane);
+  }
 }
 
 // ===== COMMANDS =====
@@ -404,12 +701,13 @@ function cmdHelp(pane) {
     <tr><td>contact</td><td>Contact information</td></tr>
     <tr><td>theme [name]</td><td>Switch theme (default/dracula/solarized/nord)</td></tr>
     <tr><td>neofetch</td><td>System info display</td></tr>
+    <tr><td>resume</td><td>Download full resume (PDF)</td></tr>
     <tr><td>snake</td><td>Play Snake 🐍</td></tr>
     <tr><td>clear</td><td>Clear the terminal</td></tr>
     <tr><td>exit / home</td><td>Return to portfolio</td></tr>
   </table>
   <div style="color:var(--text-dim);font-size:0.8rem;margin-top:8px">
-    Tip: Use ↑↓ for history · Tab for autocomplete · Ctrl+L to clear
+    Tip: <kbd>Ctrl+H</kbd> help · ↑↓ history · Tab autocomplete · Ctrl+L clear · Click suggestions in welcome to run
   </div>
 </div>`;
   appendHTML(pane, html);
@@ -580,6 +878,18 @@ function cmdEcho(pane, args) {
   appendLine(pane, args.join(' ') || '', 'output-line');
 }
 
+function cmdResume(pane) {
+  window.open(RESUME_URL, '_blank', 'noopener');
+  resetCreditsLimit(pane);
+  const html = `
+<div class="cmd-section">
+  <div class="cmd-header">// RESUME</div>
+  <div style="color:var(--green);margin:4px 0">Opening resume in new tab...</div>
+  <div class="credits-topped-off">Credits topped off! 🎉 4 more questions unlocked. (It's a fun loop — ask away!)</div>
+</div>`;
+  appendHTML(pane, html);
+}
+
 function cmdExit(pane) {
   appendLine(pane, 'Redirecting to portfolio...', 'output-warn');
   setTimeout(() => { window.location.href = 'index.html'; }, 800);
@@ -621,18 +931,28 @@ function cmdSnake(pane) {
 
   panes[pane].snakeActive = true;
 
-  const containerId = `snake-container-${pane}`;
+  if (panes[pane].snakeInstance) {
+    panes[pane].snakeInstance.remove();
+    panes[pane].snakeInstance = null;
+  }
+
+  const gameId = Date.now();
+  const containerId = `snake-container-${pane}-${gameId}`;
+  const scoreId = `snake-score-${pane}-${gameId}`;
   const html = `
-<div class="cmd-section">
+<div class="cmd-section snake-game-wrapper">
   <div class="cmd-header">// SNAKE 🐍</div>
-  <div id="${containerId}" class="cmd-section"></div>
-  <div class="snake-controls">WASD / Arrow Keys to move · Q to quit · Score: <span id="snake-score-${pane}">0</span></div>
+  <div id="${containerId}" class="snake-game-container"></div>
+  <div class="snake-controls">WASD / Arrow Keys to move · Q to quit · Score: <span id="${scoreId}">0</span></div>
 </div>`;
   appendHTML(pane, html);
 
   scrollToBottom(pane);
+  panes[pane].inputEl.blur();
 
   const container = document.getElementById(containerId);
+  if (!container) { panes[pane].snakeActive = false; return; }
+
   const tileSize = 18;
   const cols = 22;
   const rows = 16;
@@ -641,26 +961,51 @@ function cmdSnake(pane) {
 
   let snake = [{ x: 11, y: 8 }, { x: 10, y: 8 }, { x: 9, y: 8 }];
   let dir = { x: 1, y: 0 };
-  let nextDir = { x: 1, y: 0 };
+  const nextDir = { x: 1, y: 0 };
   let food = randomFood();
   let score = 0;
   let gameOver = false;
   let intervalId = null;
 
-  const scoreEl = document.getElementById(`snake-score-${pane}`);
+  const scoreEl = document.getElementById(scoreId);
 
   // Resolve CSS variable to actual color
   function getCssVar(name) {
     return getComputedStyle(document.body).getPropertyValue(name).trim();
   }
 
+  function drawSnakeAndFood(p) {
+    snake.forEach((s, i) => {
+      p.noStroke();
+      p.fill(i === 0 ? (getCssVar('--yellow') || '#FFE44D') : (getCssVar('--green') || '#39FF14'));
+      p.rect(s.x * tileSize + 1, s.y * tileSize + 1, tileSize - 2, tileSize - 2, 3);
+    });
+    p.fill(getCssVar('--pink') || '#FF4D9D');
+    p.noStroke();
+    p.circle(food.x * tileSize + tileSize / 2, food.y * tileSize + tileSize / 2, tileSize - 4);
+  }
+
+  function drawGameOverOverlay(p, finalScore) {
+    p.fill(0, 0, 0, 180);
+    p.noStroke();
+    p.rect(0, 0, w, h);
+    p.fill(getCssVar('--red') || '#ff5555');
+    p.textAlign(p.CENTER, p.CENTER);
+    p.textSize(24);
+    p.text('GAME OVER', w / 2, h / 2 - 15);
+    p.textSize(14);
+    p.fill(getCssVar('--text') || '#e0e0e0');
+    p.text('Score: ' + finalScore, w / 2, h / 2 + 15);
+  }
+
   const snakeP5 = new p5(function(p) {
-    panes[pane].snakeInstance = snakeP5;
 
     p.setup = function() {
       const canvas = p.createCanvas(w, h);
-      canvas.parent(containerId);
-      canvas.style('display', 'block');
+      canvas.parent(container);
+      canvas.elt.style.display = 'block';
+      canvas.elt.style.border = '2px solid ' + (getCssVar('--border') || '#333');
+      canvas.elt.tabIndex = -1;
       p.noSmooth();
       p.frameRate(8);
     };
@@ -678,22 +1023,28 @@ function cmdSnake(pane) {
 
       // Grid
       p.stroke(borderColor);
-      p.strokeWeight(0.3);
+      p.strokeWeight(0.5);
       for (let x = 0; x <= cols; x++) p.line(x * tileSize, 0, x * tileSize, h);
       for (let y = 0; y <= rows; y++) p.line(0, y * tileSize, w, y * tileSize);
 
       // Move snake
-      dir = nextDir;
+      dir = { ...nextDir };
       const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
 
       // Wall collision
       if (head.x < 0 || head.x >= cols || head.y < 0 || head.y >= rows) {
+        snake.unshift(head);
+        drawSnakeAndFood(p);
+        drawGameOverOverlay(p, score);
         endGame(p, pane);
         return;
       }
 
       // Self collision
       if (snake.some(s => s.x === head.x && s.y === head.y)) {
+        snake.unshift(head);
+        drawSnakeAndFood(p);
+        drawGameOverOverlay(p, score);
         endGame(p, pane);
         return;
       }
@@ -710,32 +1061,38 @@ function cmdSnake(pane) {
         snake.pop();
       }
 
-      // Draw snake
-      snake.forEach((s, i) => {
-        p.noStroke();
-        p.fill(i === 0 ? headColor : snakeColor);
-        p.rect(s.x * tileSize + 1, s.y * tileSize + 1, tileSize - 2, tileSize - 2, 3);
-      });
-
-      // Draw food
-      p.fill(foodColor);
-      p.noStroke();
-      p.circle(food.x * tileSize + tileSize / 2, food.y * tileSize + tileSize / 2, tileSize - 4);
+      drawSnakeAndFood(p);
     };
 
     p.keyPressed = function() {
       const { keyCode } = p;
-      // Arrow keys
-      if (keyCode === p.UP_ARROW || keyCode === 87) { if (dir.y !== 1) nextDir = { x: 0, y: -1 }; }
-      else if (keyCode === p.DOWN_ARROW || keyCode === 83) { if (dir.y !== -1) nextDir = { x: 0, y: 1 }; }
-      else if (keyCode === p.LEFT_ARROW || keyCode === 65) { if (dir.x !== 1) nextDir = { x: -1, y: 0 }; }
-      else if (keyCode === p.RIGHT_ARROW || keyCode === 68) { if (dir.x !== -1) nextDir = { x: 1, y: 0 }; }
-      else if (keyCode === 81) { // Q
-        endGame(p, pane, true);
-      }
-      return false; // prevent default scrolling
+      if (keyCode === p.UP_ARROW || keyCode === 87) { if (dir.y !== 1) { nextDir.x = 0; nextDir.y = -1; } }
+      else if (keyCode === p.DOWN_ARROW || keyCode === 83) { if (dir.y !== -1) { nextDir.x = 0; nextDir.y = 1; } }
+      else if (keyCode === p.LEFT_ARROW || keyCode === 65) { if (dir.x !== 1) { nextDir.x = -1; nextDir.y = 0; } }
+      else if (keyCode === p.RIGHT_ARROW || keyCode === 68) { if (dir.x !== -1) { nextDir.x = 1; nextDir.y = 0; } }
+      else if (keyCode === 81) { endGame(p, pane, true); }
+      return false;
     };
   });
+  panes[pane].snakeInstance = snakeP5;
+
+  // Document key listener: capture WASD/arrows when snake is active (keys go to input by default)
+  function snakeKeyHandler(e) {
+    if (!panes[pane].snakeActive || gameOver) return;
+    const k = e.key.toLowerCase();
+    if ((k === 'w' || k === 'arrowup') && dir.y !== 1) { nextDir.x = 0; nextDir.y = -1; e.preventDefault(); e.stopPropagation(); }
+    else if ((k === 's' || k === 'arrowdown') && dir.y !== -1) { nextDir.x = 0; nextDir.y = 1; e.preventDefault(); e.stopPropagation(); }
+    else if ((k === 'a' || k === 'arrowleft') && dir.x !== 1) { nextDir.x = -1; nextDir.y = 0; e.preventDefault(); e.stopPropagation(); }
+    else if ((k === 'd' || k === 'arrowright') && dir.x !== -1) { nextDir.x = 1; nextDir.y = 0; e.preventDefault(); e.stopPropagation(); }
+    else if (k === 'q') { e.preventDefault(); e.stopPropagation(); endGame(panes[pane].snakeInstance, pane, true); }
+  }
+  document.addEventListener('keydown', snakeKeyHandler, true);
+
+  const _endGame = endGame;
+  endGame = function(p, paneName, quit) {
+    document.removeEventListener('keydown', snakeKeyHandler, true);
+    _endGame(p, paneName, quit);
+  };
 
   function randomFood() {
     return { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
@@ -745,15 +1102,17 @@ function cmdSnake(pane) {
     gameOver = true;
     panes[paneName].snakeActive = false;
     p.noLoop();
-    p.remove();
+    p.keyPressed = function() { return true; };
 
     if (quit) {
       appendLine(paneName, `Game quit. Final score: ${score}`, 'output-warn');
     } else {
       appendLine(paneName, `Game over! Score: ${score}. Type 'snake' to play again.`, 'output-error');
     }
-    panes[paneName].inputEl.focus();
     scrollToBottom(paneName);
+    activePane = paneName;
+    panes[paneName].inputEl.focus();
+    setTimeout(() => panes[paneName].inputEl.focus(), 50);
   }
 }
 
@@ -776,7 +1135,7 @@ function appendHTML(pane, html) {
 function printCmd(pane, cmd) {
   const div = document.createElement('div');
   div.className = 'output-line output-cmd';
-  div.innerHTML = `<span class="prompt" style="color:var(--prompt)">abhishek@portfolio:~$ </span><span style="color:var(--text)">${escapeHtml(cmd)}</span>`;
+  div.innerHTML = `<span class="prompt" style="color:var(--prompt)">> </span><span style="color:var(--text)">${escapeHtml(cmd)}</span>`;
   panes[pane].outputEl.appendChild(div);
 }
 

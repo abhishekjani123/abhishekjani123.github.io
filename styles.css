@@ -19,6 +19,7 @@
   --border: #333355;
   --prompt: #00E5FF;
   --prompt-at: #39FF14;
+  --accent: #c9a227;
   --selection: rgba(0,229,255,0.2);
 }
 
@@ -35,6 +36,7 @@
   --border: #44475a;
   --prompt: #8be9fd;
   --prompt-at: #50fa7b;
+  --accent: #bd93f9;
   --selection: rgba(189,147,249,0.2);
 }
 
@@ -51,6 +53,7 @@
   --border: #073642;
   --prompt: #2aa198;
   --prompt-at: #859900;
+  --accent: #b58900;
   --selection: rgba(42,161,152,0.2);
 }
 
@@ -67,7 +70,35 @@
   --border: #3b4252;
   --prompt: #88c0d0;
   --prompt-at: #a3be8c;
+  --accent: #88c0d0;
   --selection: rgba(136,192,208,0.2);
+}
+
+/* ===== TABS (Claude Code-style) ===== */
+.terminal-tabs {
+  display: flex;
+  gap: 0;
+  background: #252526;
+  padding: 0 8px 0 12px;
+  font-size: 0.8rem;
+  border-bottom: 1px solid #3c3c3c;
+  flex-shrink: 0;
+}
+
+.terminal-tabs .tab {
+  padding: 8px 14px;
+  color: #969696;
+  cursor: default;
+  border-bottom: 2px solid transparent;
+}
+
+.terminal-tabs .tab:hover {
+  color: #ccc;
+}
+
+.terminal-tabs .tab-active {
+  color: #fff;
+  border-bottom-color: var(--accent, #c9a227);
 }
 
 /* ===== BASE ===== */
@@ -277,20 +308,281 @@ body {
 .output-info { color: var(--cyan); }
 .output-muted { color: var(--text-dim); }
 
-/* ===== WELCOME BANNER ===== */
-.welcome-banner {
-  color: var(--cyan);
-  margin-bottom: 20px;
-  line-height: 1.4;
+/* ===== CLAUDE CODE-STYLE WELCOME ===== */
+.welcome-cli-line {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.84rem;
+  margin-bottom: 4px;
 }
 
-.welcome-banner pre {
+.cli-prompt {
+  color: var(--text-dim);
+}
+
+.cli-cmd {
+  color: var(--text);
+}
+
+.welcome-tip {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+}
+
+.welcome-tip code,
+.welcome-tip kbd {
+  background: var(--bg-pane);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.76rem;
+}
+
+.claude-frame {
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 2px;
+  margin-bottom: 20px;
+  background: rgba(0,0,0,0.15);
+}
+
+.claude-frame-enter {
+  animation: claude-frame-in 0.5s ease-out forwards;
+}
+
+@keyframes claude-frame-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cli-cursor {
+  color: var(--green);
+  animation: thinking-blink 0.8s step-end infinite;
+}
+
+.launch-line .cli-typing {
+  color: var(--green);
+}
+
+/* ===== SATIRICAL "OUT OF CREDITS" BLOCK ===== */
+.credits-limit-block {
+  margin: 16px 0;
+  padding: 14px 18px;
+  background: rgba(0,0,0,0.2);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.credits-limit-header {
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+}
+
+.credits-limit-title {
+  color: var(--yellow);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin: 8px 0;
+}
+
+.credits-limit-body {
+  margin: 12px 0;
+  color: var(--text);
+}
+
+.credits-options-title {
+  font-weight: 600;
+  color: var(--cyan);
+  margin-bottom: 6px;
+}
+
+.credits-option {
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+.credits-link {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.credits-link:hover {
+  color: var(--cyan);
+  text-decoration: underline;
+}
+
+.credits-limit-footer {
+  color: var(--text-dim);
+  font-style: italic;
+  margin: 8px 0;
+}
+
+.credits-topped-off {
+  color: var(--cyan);
+  font-size: 0.82rem;
+  margin-top: 6px;
+}
+
+.claude-frame-inner {
+  display: flex;
+  gap: 24px;
+  padding: 18px 20px;
+  background: var(--bg-pane);
+  border-radius: 8px;
+  min-height: 140px;
+}
+
+.claude-left {
+  flex-shrink: 0;
+}
+
+.claude-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.claude-greeting {
+  font-size: 0.88rem;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.claude-mascot {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  line-height: 1.2;
+  margin: 6px 0 8px 0;
+  letter-spacing: 1px;
+}
+
+.claude-meta {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.claude-path {
+  font-size: 0.75rem;
+  color: var(--cyan);
+  margin-top: 4px;
+}
+
+.claude-right {
+  flex: 1;
+  min-width: 0;
+}
+
+.claude-section-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.claude-tip-text {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.claude-tip-text code {
+  background: var(--bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.78rem;
+}
+
+.cmd-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cmd-suggestion {
+  font-family: 'Space Mono', 'Fira Code', monospace;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--green);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.cmd-suggestion:hover {
+  background: rgba(0,229,255,0.12);
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.cmd-suggestion:active {
+  transform: scale(0.98);
+}
+
+/* ===== THINKING ANIMATION (satirical model "thinking") ===== */
+.thinking-block {
+  margin: 12px 0;
+  padding: 6px 0;
+  font-size: 0.82rem;
+}
+
+.thinking-line {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.thinking-caret {
+  color: var(--green);
+  animation: thinking-blink 1.2s step-end infinite;
+}
+
+.thinking-msg {
+  color: var(--yellow);
+  opacity: 0.95;
+}
+
+@keyframes thinking-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ===== PERSISTENT HINT BAR (Claude Code-style: ? for shortcuts) ===== */
+.input-hint-bar {
+  flex-shrink: 0;
+  padding: 6px 20px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+}
+
+.input-hint-bar:hover {
+  color: var(--cyan);
+}
+
+/* kbd in command output (e.g. help) */
+.cmd-section kbd {
   font-family: 'Space Mono', monospace;
   font-size: 0.78rem;
-  color: var(--yellow);
+  padding: 2px 5px;
+  background: var(--bg-pane);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-dim);
 }
-
-.welcome-line { margin: 3px 0; }
 
 /* ===== COMMAND OUTPUT CARDS ===== */
 .cmd-section {
@@ -443,12 +735,16 @@ body {
 }
 
 /* ===== SNAKE GAME ===== */
-#snake-container {
-  margin: 8px 0;
+.snake-game-container {
+  margin: 12px 0;
+  min-height: 288px;
+  width: 396px;
+  line-height: 0;
+  overflow: visible;
 }
 
-#snake-container canvas {
-  display: block;
+.snake-game-container canvas {
+  display: block !important;
   border: 2px solid var(--border);
 }
 
@@ -509,6 +805,31 @@ body {
 
   .welcome-banner pre {
     font-size: 0.6rem;
+  }
+
+  .input-hint-bar {
+    padding: 5px 14px;
+    font-size: 0.68rem;
+  }
+
+  .quick-actions {
+    padding: 10px 12px;
+    margin-top: 12px;
+  }
+
+  .cmd-suggestion {
+    font-size: 0.76rem;
+    padding: 5px 10px;
+  }
+
+  .claude-frame-inner {
+    flex-direction: column;
+    padding: 14px 16px;
+  }
+
+  .terminal-tabs .tab {
+    padding: 6px 10px;
+    font-size: 0.74rem;
   }
 }
 
