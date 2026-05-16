@@ -9,7 +9,7 @@ const DATA = {
   linkedin: 'https://www.linkedin.com/in/abhishekjani075/',
 
   about: [
-    'MS Computer Science student at Rutgers University (GPA: 3.78/4.0).',
+    'MS Computer Science student at Rutgers University (GPA: 3.83/4.0).',
     'Software Engineer specializing in distributed systems, cloud infrastructure,',
     'and machine learning. Based in New Brunswick, NJ.',
     '',
@@ -100,7 +100,7 @@ const DATA = {
     {
       degree: 'Master of Science, Computer Science',
       school: 'Rutgers University',
-      gpa: '3.78 / 4.0',
+      gpa: '3.83 / 4.0',
       period: 'Sep 2024 – May 2026',
       location: 'New Brunswick, NJ'
     },
@@ -913,7 +913,7 @@ function cmdNeofetch(pane) {
     <div class="cmd-field"><span class="cmd-key" style="color:var(--cyan)">Theme</span><span class="cmd-val">${currentTheme}</span></div>
     <div class="cmd-field"><span class="cmd-key" style="color:var(--cyan)">Languages</span><span class="cmd-val">Python · JS · Java · C++</span></div>
     <div class="cmd-field"><span class="cmd-key" style="color:var(--cyan)">Cloud</span><span class="cmd-val">AWS · Docker · Prometheus</span></div>
-    <div class="cmd-field"><span class="cmd-key" style="color:var(--cyan)">GPA</span><span class="cmd-val">3.78 / 4.0</span></div>
+    <div class="cmd-field"><span class="cmd-key" style="color:var(--cyan)">GPA</span><span class="cmd-val">3.83 / 4.0</span></div>
     <div style="margin-top:10px;display:flex;gap:6px">
       ${['var(--red)', 'var(--yellow)', 'var(--green)', 'var(--cyan)', 'var(--pink)', 'var(--text)'].map(c => `<div style="width:20px;height:20px;background:${c};border-radius:2px"></div>`).join('')}
     </div>
